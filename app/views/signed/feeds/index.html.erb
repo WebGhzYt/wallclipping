@@ -1,0 +1,45 @@
+<%= render "shared/replace_content_script" %>
+<script>
+  <% if @title %>
+     $("#user_select_item").html("<%= @title %>");
+  <% end %>
+  $(document).ready(function(){
+     replace_content();
+ $( "#right" ).click(function() {
+    $( ".block" ).animate({ "scrollLeft": "+=1083px" }, "slow" );
+     });
+ $( "#left" ).click(function(){
+    $( ".block" ).animate({ "scrollLeft": "-=1083" }, "slow" );
+    });
+ });
+
+</script>
+<table class="span21 block" style="overflow: auto;" id="my_feeds_index">
+   <tr>
+	 <div id="message_partial"><%= render "messages" %></div>
+     <td style="min-width: 250px;"><%= render "left_panel" %></td>
+     <%= render "form_scripts" %>
+	   <%= render "index" %>
+   </tr>
+</table>
+
+
+<button id="left"><</button>
+<button id="right">></button>
+
+
+<script>
+
+ $(document).on('click', '[id^=privacy_user_]', function(){
+  if($(this).attr('checked'))  
+   { var value = this.value;
+    if(value == 2){
+      $(this).parents('#privacy_user_div').find('.commenter_drop_down').show();
+    }
+    else {
+      $(this).parents('#privacy_user_div').find('.commenter_drop_down').hide();
+    }
+   }
+});
+
+</script>

@@ -1,0 +1,25 @@
+    <%= stylesheet_link_tag "style", :media => "all" %>
+<header class="clearfix">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+  
+</div>
+  
+</header>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8">
+      <div id="uname"><%= render "unsigned/home/forgot_username_form" %>
+      </div>
+       <%=link_to "Back to login page",root_path %>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
+</div>
+
+

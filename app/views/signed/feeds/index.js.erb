@@ -1,0 +1,44 @@
+lastFeed = '<%= @last_feed %>';
+feedCounter += parseInt('<%= @limit %>');
+<% unless params[:last_feed].present? %>
+ pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
+ feedCounter = 0;
+ $("#minTd").hide();
+ $("#formTd").hide();
+
+ $("td[tobeRemoved=true]").remove();
+
+ <% @feeds.reverse.each do |feed| %>
+  $("#new_td").replaceWith("<td id='new_td' style='display : none'></td><td tobeRemoved=true id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td>");
+ <% end %>
+ chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
+ circleId = "<%= @circle ? @circle.id : '' %>";
+ connectionId = "<%= @connection ? @connection.id : '' %>";
+ <% if @status.nil? || @status %>
+  $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
+  MinPost();
+ <% end %>
+ fetch_form($('#post_type_id_post_type').data('value'))
+ $("#user_select_item").html("<%= @title %>");
+ $('#feed_type').val('<%= params[:feed_type] %>')
+ $("#circle_id").val('<%= params[:circle_id] %>')
+ $("#chronicle_id").val('<%= params[:chronicle_id] %>')
+ $("#connection_id").val('<%= params[:connection_id] %>')
+ $("#type_id").val('<%= params[:type_id] %>')
+<% else %>
+
+ <% @feeds.each do |feed| %>
+  $("#old_td").replaceWith("<td tobeRemoved=true id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td><td id='old_td' style='display : none'></td>");
+ <% end %>
+<% end %>
+
+unifyHeights();
+
+<% if @feeds.size == @limit %>
+    if(feedCounter < 300) {
+	  setTimeout(function(){fetch_older_feeds()},3000);
+	}
+<% end %>
+replace_content();
+
+$('textarea').autosize();

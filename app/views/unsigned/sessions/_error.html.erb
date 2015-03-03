@@ -1,0 +1,18 @@
+<div id="form_login">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="transbox">
+        <div class="alert" style="color :red";>
+          <strong>Errors!</strong> <%= @errors %>
+        </div>
+        <div class= "form_css">
+          <%= render "unsigned/shared/form" %>
+          <span style="color:white";>Trouble logging in the site ?</span><%= link_to 'Click here', help_unsigned_home_index_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

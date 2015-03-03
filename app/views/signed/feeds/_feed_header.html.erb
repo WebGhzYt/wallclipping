@@ -1,0 +1,12 @@
+<% display_name = feed.user.display_name.blank? ? feed.user.first_name.capitalize + " "+ feed.user.last_name.capitalize : feed.user.display_name.capitalize %>
+ <%= link_to display_name, signed_user_path(feed.user) %><br>
+ <% if feed.created_at.present? && feed.created_at.to_date == Date.today %>
+   <%= feed.created_at.in_time_zone(feed.user.time_zone).strftime("%l:%M%p").to_s %>
+ <% elsif feed.created_at.present? &&  feed.created_at.to_date == Date.today-1 %>
+   <%= feed.created_at.in_time_zone(feed.user.time_zone).strftime("Yesterday %l:%M%p").to_s %>
+ <% elsif feed.created_at.present? %>
+   <%= feed.created_at.in_time_zone(feed.user.time_zone).to_date.strftime("%b %d, %Y").to_s %>
+ <% end %> <br>
+<% unless feed.sub_category.nil? %>
+	<span class="feed_categorey"><%= feed.sub_category.name %> </span>
+<% end %>

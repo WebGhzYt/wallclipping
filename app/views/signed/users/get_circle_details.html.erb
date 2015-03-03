@@ -1,0 +1,71 @@
+<script>
+
+    $(document).ready(function(){
+      $('.bxslider').bxSlider();
+    });
+
+    $(function(){
+      $('#slides').slides({
+        preload: true,
+        preloadImage: '/img/loading.gif',
+        play: 5000,
+        pause: 2500,
+        hoverPause: true
+      });
+    });
+</script>
+<!-- bxSlider Javascript file -->
+<script src="/assets/jquery.bxslider.js"></script>
+<!-- bxSlider CSS file -->
+<link rel="stylesheet" type="text/css" href="/assets/jquery.bxslider.css" media="all" /> 
+
+<div class="hero-unit" adjustTd=true>
+  <div style="color:#1B7AE0;font-weight:bold">
+    <span class="span_content" ><%= @circle.name.capitalize %></span>
+  </div><br><br>
+
+  <div id="myCarousel" class="bxslider">
+      <% if @circle.circle_images.count == 0 %>
+        <div class="active item">
+          <img src="/img/default_banner_image.jpg" />
+        </div>
+      <% else %>
+        <div class="active item">
+            <%= image_tag @circle.circle_images.first.circle_image_url %>
+         </div>
+         <% count = 0 %>
+         <% @circle.circle_images.each do |bi| %>
+           <% count += 1 %>
+           <% if count != 1 %>
+             <div class="item">
+               <%= image_tag bi.circle_image_url %>
+             </div>
+           <% end %>
+          <% end %>
+      <% end %>
+    </div>
+             <!-- Carousel nav -->
+
+<!--         <a  href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a  href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+
+     <div id="btn_controls_<%= @circle.id.to_s %>" class="span6 offset14"><%= render "signed/users/circles/controls", :circle => @circle %></div><br><br><br>
+
+    <div id="circle_about_and_members" >
+     <div class="well well-small" style="max-width:800px;"> About me</div><br>
+
+       <table class="noborder span15">
+        <% unless @circle.nil? %>
+            <% @circle.circle_details.each do |cd| %>
+           <tr>
+            <td valign="top" style="min-width:150px;color:grey;font-weight:bold"><span class="span_content" ><%= cd.title %></span></td>
+            <td style="font-style:normal;color:black;text-align:justify"><span class="span_content" ><%= cd.details %></span></td>
+           </tr>
+           <% end %>
+         <% end %>
+       </table>
+    </div>
+ </div>
+
+
+

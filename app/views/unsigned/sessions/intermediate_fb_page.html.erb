@@ -1,0 +1,30 @@
+    <%= stylesheet_link_tag "style", :media => "all" %>
+<header class="clearfix">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+</div>
+</header>
+<div class="help_main">
+  <div class="logininter">
+<%= form_tag facebook_login_unsigned_sessions_path , :method => :post, multipart: true do  %>
+          <p style="font-family:verdana;font-size:16px;width:510px;">Add some details to setup your profile and start recommending<p>
+		    <%= label_tag 'Time Zone' %>
+		    <%= select_tag :time_zone, time_zone_options_for_select(selected = nil, priority_zones = nil, model = ::ActiveSupport::TimeZone) %> 
+		    <br>
+		    <%= label_tag 'Master Email'%>
+		    <%= text_field_tag :master_email%>
+  		    <br>
+  		    <%= label_tag 'Profile Image'%>
+  		    <%= file_field_tag :profile_image, :as => :file, label:false %>
+  		    <br>
+                    <%= label_tag 'User Type'%>
+                    <%= select_tag "user_type", options_for_select(UserType.all.map {|type| type.name}, 'user_type') %>
+                    <br>
+  		    <%= submit_tag "Sign Up", :class => 'btn-primary'  %>
+                    <br>
+		    <% end %>
+<%#= render "footer"%>
+</div>
+</div>

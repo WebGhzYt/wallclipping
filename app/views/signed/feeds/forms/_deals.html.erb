@@ -1,0 +1,90 @@
+<%# @feed.build_deal_image %>
+<%=simple_form_for @deal_image, url: create_photo_signed_feeds_path, remote: true do |f|%>
+  <div id="deal-img" style='position:relative;top:149px;width:50%'>
+    <%= f.input :dealimage,:as => :file,label:false %>
+    <div class="image_preview" style="width: 110px;position: absolute;top: 35px;height: auto;">
+    </div>
+    <%=image_tag 'Spinner.gif', id: 'loader', style: "position:absolute;left:258px;top:8px;display:none"%>
+  </div>
+<%end%>
+<%= simple_form_for([:signed, @feed], :remote => true) do |f| %>
+  <%= f.input :feed, :as => :text, :placeholder => 'What do you recommend today?' , label:false, :input_html => {  :rows => 3, :style => "resize: none; width:260px; position:relative; top:-51px; ", :onkeyup => "display_hash_content()"} %>
+  <div style="position:relative;top:-50px;z-index: 100;">  
+   <input type="radio" name ='deal'  onclick="if (this.checked != 'true') { showdealimage();$('.new_deal_image').css('visibility','hidden');} else { hidedealimage() }; $('#is_photo').val(false)" checked>
+     <p style = "display :inline;font-size:13px;">Add Video Link</p>
+
+   <input type="radio" name ='deal'  onclick="if (this.checked != 'true') { hidedealimage();$('.new_deal_image').css('visibility','visible');} else { showdealimage();$('image_preview').css('visibility','hidden'); }; $('#is_photo').val(true)">
+     <p style = "display :inline;font-size:13px;">Add Photo</p>
+
+  <!-- <div id="deal_image">  <%#= f.fields_for :deal_image do |di|
+        di.input :dealimage,:as => :file,label:false
+        end %> 
+  </div> -->
+  </div>
+  <div id= "deal_video" style="position:relative;top:-30px;">
+    <%= f.fields_for :feed_hash do |fh| %>
+      <%= fh.input :video, :placeholder =>  'Embedded video URL >' , label:false, :input_html => { :style => "color:grey;font-weight:200;font-style:italic;display:inline;font-size:13px;position:absolute;z-index:1;bottom:-20px;" } %>
+    <% end %>
+  </div>
+
+    <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+    <%= f.input :feed_type_id, :as => :hidden, :input_html => {:value => @feed.feed_type_id} %>
+    <table id="event_table_for">
+      <tr><td><br><br><br><br>
+    <%= f.input :title, :placeholder => 'Title >', label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px;position:relative;top:115px"}%>
+    <%=hidden_field_tag 'deal_photo_id'%>
+    <%= hidden_field_tag 'is_photo', true %>
+      </td></tr>
+<tr><td>
+      <%= f.select :sub_category_id, grouped_options_for_select(@sub_categories), {:prompt => "Select category for recommendation"} %>
+    </td></tr>
+     <%= f.fields_for :feed_hash do |fh| %>
+     <tr><td><%= fh.input :deal_sale_price, :placeholder => 'Discount or coupon code >' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %></td>
+     </tr>
+
+     <tr><td><br> <%= fh.input :deal_sale_link, :placeholder => 'RSVP >' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %></td>
+     </tr>
+     <div class="date-select">
+    <tr><td><%#= fh.date_select :deal_date, :start_year => Time.now.year - 50 , :end_year => Time.now.year + 100%> <%= fh.input :deal_date, :placeholder => 'Expiry Date >' , label:false, :input_html => {:class => "datepicker",:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:90px"} %></td>   
+    </tr>
+   </table>
+   <% end %>
+  
+  <br>
+  <%= render "feed_channels", :f => f %>
+<% end %>
+
+
+<script>
+ $(document).ready(function() {
+   $("#deal_form").msDropdown();
+   $("#deal_form").data("dd");
+   $(".datepicker").datepicker({"autoclose": true});
+   $("#deal_video").show();
+   $('.new_deal_image').css('visibility','hidden');
+   $("#event_table_for").attr("style", "position: relative; bottom: 132px")
+   $("#deal_image_dealimage").change(function(){
+      $(".new_deal_image").ajaxForm().submit();
+      // $(this).css('visibility','hidden');
+      $("#loader").show();
+    });
+  });
+
+ $(document).on('keyup', '#feed_feed_hash_video', function(){
+  
+  if ($(this).val().trim().length > 0 ) {
+    $("#myButton1").attr("disabled", false);
+  }
+  else {
+    $("#myButton1").attr("disabled", true);
+  }
+ })
+ 
+</script>
+<style type="text/css">
+  .ddChild{
+    height:auto !important;
+  }
+
+</style>
+

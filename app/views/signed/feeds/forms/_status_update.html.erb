@@ -1,0 +1,42 @@
+<%= simple_form_for([:signed, @feed], :remote => true) do |f| %>
+    <%= f.input :feed, :as => :text, :placeholder => 'What do you recommend today?' , label:false, :input_html => {  :rows => 3, :style => "resize: none; width:260px; ", :onkeyup => "display_hash_content()"} %>
+    <%= f.input :title, :placeholder => "Title >",:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"}, label:false%>
+    <%= f.select :sub_category_id, grouped_options_for_select(@sub_categories), {:prompt => "Select category for recommendation"} %>
+<br>
+<br>
+  <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+  <%= f.input :feed_type_id, :as => :hidden, :input_html => {:value => @feed.feed_type_id} %>
+  <%= f.input :hash_tags, :as => :hidden %>
+  <input type="checkbox"  onclick="if (this.checked) { taguser(), fetch_friends()} else { taguserclose() }">
+  <p style = "display :inline;font-size:13px;font-weight:600;font-style:italic">Tag user</p>
+
+  <input type="checkbox"  onclick="if (this.checked) { addlink() } else { addlinkclose() }">
+  <p style = "display :inline;font-size:13px;font-weight:600;font-style:italic">Add link</p>
+  <br>
+
+   <div id = "taguser_id" style="display:none">
+     <p style= "color:grey;font-weight:200;font-style:italic;display:inline;font-size:13px;">Tag user</p>
+     <%= f.input :tag_user, label:false%>
+   </div>
+
+   <div id = "addlink_id" style="display:none">
+     <p style= "color:grey;font-weight:200;font-style:italic;display:inline;font-size:13px;">Add link</p>
+     <%= f.input :add_link, label:false%>
+   </div><br>
+  <br>
+  <%= render "feed_channels", :f => f %>
+<% end %>
+
+
+<script>
+$(document).ready(function() {
+  $("#blog_form").msDropdown();
+  $("#blog_form").data("dd");
+});
+</script>
+
+<style type="text/css">
+  .ddChild{
+    height:auto !important;
+  }
+</style>

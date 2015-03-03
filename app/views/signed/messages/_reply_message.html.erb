@@ -1,0 +1,30 @@
+<div id="new_reply_msg">
+  <h6 style="color:#1497e2"> Compose Message </h6>
+    <div style="color:#1497e2"><b style="color:black">To</b>
+      <%=  User.where(:_id => params[:id]).first.first_name + " " + User.where(:_id => params[:id]).first.last_name%>
+    </div>
+    <hr>
+  </h6>
+
+  <div class="row-fluid">
+    <%= simple_form_for @message, :url => signed_messages_path, :remote => true do |f| %>
+      <div class="span2">
+        <%= image_tag current_user.profile_image_thumb %>
+      </div>
+      <div class="span7" id="reply">
+        <%= f.input :message, :as => :text, :placeholder => 'reply here...' , label:false, :input_html => {:rows => 1, :cols => 1,  :style => "resize: none;font-size:12px;width: 130px;"} %>
+      </div>
+      <%= hidden_field_tag :page_name, '', :value => "main_messages" %>
+      <%= f.input :friend_id, :as => :hidden, :input_html => {:value => friend} %>
+      <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+      <div class="span3">
+        <%= f.submit "Reply", :class => "btn btn-small btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="all_messages">
+   <%= render "all_messages" %>
+  </div>
+
+</div>

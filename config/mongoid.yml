@@ -1,0 +1,31 @@
+development:
+  sessions:
+    default:
+      database: random_lives_production
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+  # options: #strictly 2 spaces before
+  #   raise_not_found_error: false #strictly 4 spaces before not 6   
+  # username: postgres
+  # password: postgres
+
+# production:
+#   sessions:
+#     default:
+#       database: random_lives_production
+#       hosts:
+#         - localhost:27017
+#       options:
+#         consistency: :strong
+
+# test:
+#   sessions:
+#     default:
+#       database: random_lives_test
+#       hosts:
+#         - localhost:27017
+#       options:
+#         consistency: :strong
+

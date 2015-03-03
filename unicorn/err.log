@@ -1,0 +1,287 @@
+I, [2014-07-30T11:45:21.587430 #9571]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=10
+I, [2014-07-30T11:45:21.588050 #9571]  INFO -- : listening on addr=0.0.0.0:8080 fd=11
+I, [2014-07-30T11:45:21.588220 #9571]  INFO -- : worker=0 spawning...
+I, [2014-07-30T11:45:21.593556 #9571]  INFO -- : worker=1 spawning...
+I, [2014-07-30T11:45:21.594603 #9574]  INFO -- : worker=0 spawned pid=9574
+I, [2014-07-30T11:45:21.594874 #9574]  INFO -- : Refreshing Gem list
+I, [2014-07-30T11:45:21.604006 #9571]  INFO -- : master process ready
+I, [2014-07-30T11:45:21.606287 #9577]  INFO -- : worker=1 spawned pid=9577
+I, [2014-07-30T11:45:21.606546 #9577]  INFO -- : Refreshing Gem list
+Rails Error: Unable to access log file. Please ensure that /home/deploy/gitlab/recommendone/log/production.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+Rails Error: Unable to access log file. Please ensure that /home/deploy/gitlab/recommendone/log/production.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+I, [2014-07-30T11:45:38.633530 #9577]  INFO -- : worker=1 ready
+I, [2014-07-30T11:45:40.316487 #9574]  INFO -- : worker=0 ready
+I, [2014-07-30T12:11:49.792915 #9571]  INFO -- : reaped #<Process::Status: pid 9574 exit 0> worker=0
+I, [2014-07-30T12:11:49.793073 #9571]  INFO -- : reaped #<Process::Status: pid 9577 exit 0> worker=1
+I, [2014-07-30T12:11:49.793205 #9571]  INFO -- : master complete
+I, [2014-08-04T14:33:58.286405 #29238]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T14:33:58.286533 #29238]  INFO -- : worker=0 spawning...
+I, [2014-08-04T14:33:58.292995 #29238]  INFO -- : worker=1 spawning...
+I, [2014-08-04T14:33:58.293985 #29265]  INFO -- : worker=0 spawned pid=29265
+I, [2014-08-04T14:33:58.294255 #29265]  INFO -- : Refreshing Gem list
+I, [2014-08-04T14:33:58.297855 #29238]  INFO -- : master process ready
+I, [2014-08-04T14:33:58.298784 #29268]  INFO -- : worker=1 spawned pid=29268
+I, [2014-08-04T14:33:58.298954 #29268]  INFO -- : Refreshing Gem list
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+I, [2014-08-04T14:34:12.237230 #29268]  INFO -- : worker=1 ready
+I, [2014-08-04T14:34:12.241413 #29265]  INFO -- : worker=0 ready
+I, [2014-08-04T14:36:39.954488 #29238]  INFO -- : reaped #<Process::Status: pid 29265 exit 0> worker=0
+I, [2014-08-04T14:36:39.954636 #29238]  INFO -- : reaped #<Process::Status: pid 29268 exit 0> worker=1
+I, [2014-08-04T14:36:39.954781 #29238]  INFO -- : master complete
+I, [2014-08-04T14:36:44.306519 #29276]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T14:36:44.306681 #29276]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T14:36:44.306798 #29276]  INFO -- : worker=0 spawning...
+I, [2014-08-04T14:36:44.313414 #29276]  INFO -- : worker=1 spawning...
+I, [2014-08-04T14:36:44.314432 #29303]  INFO -- : worker=0 spawned pid=29303
+I, [2014-08-04T14:36:44.314657 #29303]  INFO -- : Refreshing Gem list
+I, [2014-08-04T14:36:44.318727 #29276]  INFO -- : master process ready
+I, [2014-08-04T14:36:44.319966 #29306]  INFO -- : worker=1 spawned pid=29306
+I, [2014-08-04T14:36:44.320141 #29306]  INFO -- : Refreshing Gem list
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+I, [2014-08-04T14:36:57.871174 #29306]  INFO -- : worker=1 ready
+I, [2014-08-04T14:36:58.118126 #29303]  INFO -- : worker=0 ready
+I, [2014-08-04T14:38:17.727392 #29276]  INFO -- : reaped #<Process::Status: pid 29303 exit 0> worker=0
+I, [2014-08-04T14:38:17.727542 #29276]  INFO -- : reaped #<Process::Status: pid 29306 exit 0> worker=1
+I, [2014-08-04T14:38:17.727659 #29276]  INFO -- : master complete
+I, [2014-08-04T14:38:22.137661 #29311]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T14:38:22.137841 #29311]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T14:38:22.137956 #29311]  INFO -- : worker=0 spawning...
+I, [2014-08-04T14:38:22.144507 #29311]  INFO -- : worker=1 spawning...
+I, [2014-08-04T14:38:22.145343 #29338]  INFO -- : worker=0 spawned pid=29338
+I, [2014-08-04T14:38:22.145564 #29338]  INFO -- : Refreshing Gem list
+I, [2014-08-04T14:38:22.150444 #29311]  INFO -- : master process ready
+I, [2014-08-04T14:38:22.151509 #29341]  INFO -- : worker=1 spawned pid=29341
+I, [2014-08-04T14:38:22.151683 #29341]  INFO -- : Refreshing Gem list
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+I, [2014-08-04T14:38:35.762548 #29341]  INFO -- : worker=1 ready
+I, [2014-08-04T14:38:35.847548 #29338]  INFO -- : worker=0 ready
+I, [2014-08-04T14:41:47.494304 #29311]  INFO -- : reaped #<Process::Status: pid 29338 exit 0> worker=0
+I, [2014-08-04T14:41:47.494511 #29311]  INFO -- : reaped #<Process::Status: pid 29341 exit 0> worker=1
+I, [2014-08-04T14:41:47.494661 #29311]  INFO -- : master complete
+I, [2014-08-04T14:41:50.253781 #29415]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T14:41:50.253944 #29415]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T14:41:50.254070 #29415]  INFO -- : worker=0 spawning...
+I, [2014-08-04T14:41:50.260626 #29415]  INFO -- : worker=1 spawning...
+I, [2014-08-04T14:41:50.261725 #29442]  INFO -- : worker=0 spawned pid=29442
+I, [2014-08-04T14:41:50.261939 #29442]  INFO -- : Refreshing Gem list
+I, [2014-08-04T14:41:50.265667 #29415]  INFO -- : master process ready
+I, [2014-08-04T14:41:50.266647 #29445]  INFO -- : worker=1 spawned pid=29445
+I, [2014-08-04T14:41:50.266800 #29445]  INFO -- : Refreshing Gem list
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+Skipping index creation, cannot connect to ElasticSearch
+(The original exception was: #<Errno::ECONNREFUSED: Connection refused - connect(2)>)
+I, [2014-08-04T14:42:04.484701 #29445]  INFO -- : worker=1 ready
+I, [2014-08-04T14:42:04.577454 #29442]  INFO -- : worker=0 ready
+I, [2014-08-04T14:44:29.047100 #29415]  INFO -- : reaped #<Process::Status: pid 29442 exit 0> worker=0
+I, [2014-08-04T14:44:29.047271 #29415]  INFO -- : reaped #<Process::Status: pid 29445 exit 0> worker=1
+I, [2014-08-04T14:44:29.047454 #29415]  INFO -- : master complete
+I, [2014-08-04T15:38:49.405660 #3535]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T15:38:49.405835 #3535]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T15:38:49.405946 #3535]  INFO -- : worker=0 spawning...
+I, [2014-08-04T15:38:49.412645 #3535]  INFO -- : worker=1 spawning...
+I, [2014-08-04T15:38:49.413254 #3562]  INFO -- : worker=0 spawned pid=3562
+I, [2014-08-04T15:38:49.413439 #3562]  INFO -- : Refreshing Gem list
+I, [2014-08-04T15:38:49.417811 #3535]  INFO -- : master process ready
+I, [2014-08-04T15:38:49.418746 #3565]  INFO -- : worker=1 spawned pid=3565
+I, [2014-08-04T15:38:49.418917 #3565]  INFO -- : Refreshing Gem list
+I, [2014-08-04T15:39:02.499431 #3565]  INFO -- : worker=1 ready
+I, [2014-08-04T15:39:02.810406 #3562]  INFO -- : worker=0 ready
+I, [2014-08-04T15:53:35.608498 #3535]  INFO -- : reaped #<Process::Status: pid 3562 exit 0> worker=0
+I, [2014-08-04T15:53:35.608659 #3535]  INFO -- : reaped #<Process::Status: pid 3565 exit 0> worker=1
+I, [2014-08-04T15:53:35.608778 #3535]  INFO -- : master complete
+I, [2014-08-04T15:54:01.880942 #3997]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T15:54:01.881104 #3997]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T15:54:01.881214 #3997]  INFO -- : worker=0 spawning...
+I, [2014-08-04T15:54:01.888019 #3997]  INFO -- : worker=1 spawning...
+I, [2014-08-04T15:54:01.889073 #4024]  INFO -- : worker=0 spawned pid=4024
+I, [2014-08-04T15:54:01.889319 #4024]  INFO -- : Refreshing Gem list
+I, [2014-08-04T15:54:01.893375 #3997]  INFO -- : master process ready
+I, [2014-08-04T15:54:01.894599 #4027]  INFO -- : worker=1 spawned pid=4027
+I, [2014-08-04T15:54:01.894784 #4027]  INFO -- : Refreshing Gem list
+I, [2014-08-04T15:54:13.911556 #4027]  INFO -- : worker=1 ready
+I, [2014-08-04T15:54:14.039583 #4024]  INFO -- : worker=0 ready
+I, [2014-08-04T16:03:01.353532 #3997]  INFO -- : reaped #<Process::Status: pid 4024 exit 0> worker=0
+I, [2014-08-04T16:03:01.353685 #3997]  INFO -- : reaped #<Process::Status: pid 4027 exit 0> worker=1
+I, [2014-08-04T16:03:01.353792 #3997]  INFO -- : master complete
+I, [2014-08-04T16:03:08.964646 #4409]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T16:03:08.964804 #4409]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T16:03:08.964906 #4409]  INFO -- : worker=0 spawning...
+I, [2014-08-04T16:03:08.971474 #4409]  INFO -- : worker=1 spawning...
+I, [2014-08-04T16:03:08.972139 #4436]  INFO -- : worker=0 spawned pid=4436
+I, [2014-08-04T16:03:08.972315 #4436]  INFO -- : Refreshing Gem list
+I, [2014-08-04T16:03:08.976246 #4409]  INFO -- : master process ready
+I, [2014-08-04T16:03:08.977151 #4439]  INFO -- : worker=1 spawned pid=4439
+I, [2014-08-04T16:03:08.977319 #4439]  INFO -- : Refreshing Gem list
+I, [2014-08-04T16:03:12.119719 #4409]  INFO -- : reaped #<Process::Status: pid 4436 exit 0> worker=0
+I, [2014-08-04T16:03:12.119867 #4409]  INFO -- : reaped #<Process::Status: pid 4439 exit 0> worker=1
+I, [2014-08-04T16:03:12.119981 #4409]  INFO -- : master complete
+I, [2014-08-04T16:03:16.534176 #4442]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-04T16:03:16.534333 #4442]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=9
+I, [2014-08-04T16:03:16.534440 #4442]  INFO -- : worker=0 spawning...
+I, [2014-08-04T16:03:16.541240 #4442]  INFO -- : worker=1 spawning...
+I, [2014-08-04T16:03:16.541857 #4469]  INFO -- : worker=0 spawned pid=4469
+I, [2014-08-04T16:03:16.542083 #4469]  INFO -- : Refreshing Gem list
+I, [2014-08-04T16:03:16.546299 #4442]  INFO -- : master process ready
+I, [2014-08-04T16:03:16.547224 #4472]  INFO -- : worker=1 spawned pid=4472
+I, [2014-08-04T16:03:16.547414 #4472]  INFO -- : Refreshing Gem list
+I, [2014-08-04T16:03:29.767297 #4472]  INFO -- : worker=1 ready
+I, [2014-08-04T16:03:29.999849 #4469]  INFO -- : worker=0 ready
+I, [2014-08-04T16:03:51.435040 #4442]  INFO -- : reaped #<Process::Status: pid 4469 exit 0> worker=0
+I, [2014-08-04T16:03:51.435193 #4442]  INFO -- : reaped #<Process::Status: pid 4472 exit 0> worker=1
+I, [2014-08-04T16:03:51.435305 #4442]  INFO -- : master complete
+I, [2014-08-05T02:27:49.306592 #5356]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-05T02:27:49.306891 #5356]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=7
+I, [2014-08-05T02:27:49.307036 #5356]  INFO -- : worker=0 spawning...
+I, [2014-08-05T02:27:49.311584 #5356]  INFO -- : worker=1 spawning...
+I, [2014-08-05T02:27:49.312445 #5384]  INFO -- : worker=0 spawned pid=5384
+I, [2014-08-05T02:27:49.312652 #5384]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:27:49.315636 #5356]  INFO -- : master process ready
+I, [2014-08-05T02:27:49.316891 #5387]  INFO -- : worker=1 spawned pid=5387
+I, [2014-08-05T02:27:49.317096 #5387]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:28:01.906028 #5387]  INFO -- : worker=1 ready
+I, [2014-08-05T02:28:02.044104 #5384]  INFO -- : worker=0 ready
+I, [2014-08-05T02:29:21.538692 #5356]  INFO -- : reaped #<Process::Status: pid 5384 exit 0> worker=0
+I, [2014-08-05T02:29:21.538835 #5356]  INFO -- : reaped #<Process::Status: pid 5387 exit 0> worker=1
+I, [2014-08-05T02:29:21.538950 #5356]  INFO -- : master complete
+I, [2014-08-05T02:36:16.384445 #5547]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-05T02:36:16.384604 #5547]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=7
+I, [2014-08-05T02:36:16.384707 #5547]  INFO -- : worker=0 spawning...
+I, [2014-08-05T02:36:16.388350 #5547]  INFO -- : worker=1 spawning...
+I, [2014-08-05T02:36:16.389248 #5573]  INFO -- : worker=0 spawned pid=5573
+I, [2014-08-05T02:36:16.389489 #5573]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:36:16.391090 #5547]  INFO -- : master process ready
+I, [2014-08-05T02:36:16.392089 #5576]  INFO -- : worker=1 spawned pid=5576
+I, [2014-08-05T02:36:16.392252 #5576]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:36:22.062661 #5547]  INFO -- : reaped #<Process::Status: pid 5573 exit 0> worker=0
+I, [2014-08-05T02:36:22.062801 #5547]  INFO -- : reaped #<Process::Status: pid 5576 exit 0> worker=1
+I, [2014-08-05T02:36:22.062955 #5547]  INFO -- : master complete
+I, [2014-08-05T02:39:16.071322 #5666]  INFO -- : unlinking existing socket=/tmp/unicorn.todo.socket
+I, [2014-08-05T02:39:16.071688 #5666]  INFO -- : listening on addr=/tmp/unicorn.todo.socket fd=8
+I, [2014-08-05T02:39:16.071866 #5666]  INFO -- : worker=0 spawning...
+I, [2014-08-05T02:39:16.075874 #5666]  INFO -- : worker=1 spawning...
+I, [2014-08-05T02:39:16.076953 #5669]  INFO -- : worker=0 spawned pid=5669
+I, [2014-08-05T02:39:16.077138 #5669]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:39:16.083083 #5666]  INFO -- : master process ready
+I, [2014-08-05T02:39:16.093139 #5672]  INFO -- : worker=1 spawned pid=5672
+I, [2014-08-05T02:39:16.093356 #5672]  INFO -- : Refreshing Gem list
+I, [2014-08-05T02:39:29.750894 #5669]  INFO -- : worker=0 ready
+I, [2014-08-05T02:39:29.992295 #5672]  INFO -- : worker=1 ready
+I, [2014-08-05T02:39:42.312949 #5666]  INFO -- : reaped #<Process::Status: pid 5669 exit 0> worker=0
+I, [2014-08-05T02:39:42.313135 #5666]  INFO -- : reaped #<Process::Status: pid 5672 exit 0> worker=1
+I, [2014-08-05T02:39:42.313288 #5666]  INFO -- : master complete
+I, [2014-08-05T04:00:31.335601 #6897]  INFO -- : listening on addr=/tmp/unicorn.sock fd=8
+I, [2014-08-05T04:00:31.335897 #6897]  INFO -- : worker=0 spawning...
+I, [2014-08-05T04:00:31.339037 #6897]  INFO -- : worker=1 spawning...
+I, [2014-08-05T04:00:31.341812 #6897]  INFO -- : master process ready
+I, [2014-08-05T04:00:31.347513 #6902]  INFO -- : worker=1 spawned pid=6902
+I, [2014-08-05T04:00:31.347730 #6902]  INFO -- : Refreshing Gem list
+I, [2014-08-05T04:00:31.351647 #6900]  INFO -- : worker=0 spawned pid=6900
+I, [2014-08-05T04:00:31.351828 #6900]  INFO -- : Refreshing Gem list
+I, [2014-08-05T04:00:44.517015 #6900]  INFO -- : worker=0 ready
+I, [2014-08-05T04:00:45.015798 #6902]  INFO -- : worker=1 ready
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+I, [2014-08-05T04:25:14.658492 #6897]  INFO -- : reaped #<Process::Status: pid 6900 exit 0> worker=0
+I, [2014-08-05T04:25:14.658642 #6897]  INFO -- : reaped #<Process::Status: pid 6902 exit 0> worker=1
+I, [2014-08-05T04:25:14.658756 #6897]  INFO -- : master complete
+I, [2014-08-05T04:27:31.063860 #7760]  INFO -- : listening on addr=/tmp/unicorn.sock fd=8
+I, [2014-08-05T04:27:31.064203 #7760]  INFO -- : worker=0 spawning...
+I, [2014-08-05T04:27:31.068363 #7760]  INFO -- : worker=1 spawning...
+I, [2014-08-05T04:27:31.071897 #7760]  INFO -- : master process ready
+I, [2014-08-05T04:27:31.074619 #7765]  INFO -- : worker=1 spawned pid=7765
+I, [2014-08-05T04:27:31.074833 #7765]  INFO -- : Refreshing Gem list
+I, [2014-08-05T04:27:31.081114 #7763]  INFO -- : worker=0 spawned pid=7763
+I, [2014-08-05T04:27:31.081353 #7763]  INFO -- : Refreshing Gem list
+I, [2014-08-05T04:27:44.390340 #7763]  INFO -- : worker=0 ready
+I, [2014-08-05T04:27:44.729115 #7765]  INFO -- : worker=1 ready
+Warning! ActionDispatch::Session::DalliStore failed to save session. Content dropped.
+I, [2014-08-05T05:20:47.975854 #7760]  INFO -- : reaped #<Process::Status: pid 7763 exit 0> worker=0
+I, [2014-08-05T05:20:48.076520 #7760]  INFO -- : reaped #<Process::Status: pid 7765 exit 0> worker=1
+I, [2014-08-05T05:20:48.076732 #7760]  INFO -- : master complete
+I, [2014-08-05T05:21:53.284042 #8307]  INFO -- : listening on addr=/tmp/unicorn.sock fd=8
+I, [2014-08-05T05:21:53.284298 #8307]  INFO -- : worker=0 spawning...
+I, [2014-08-05T05:21:53.287132 #8307]  INFO -- : worker=1 spawning...
+I, [2014-08-05T05:21:53.289917 #8307]  INFO -- : master process ready
+I, [2014-08-05T05:21:53.294887 #8312]  INFO -- : worker=1 spawned pid=8312
+I, [2014-08-05T05:21:53.295102 #8312]  INFO -- : Refreshing Gem list
+I, [2014-08-05T05:21:53.299812 #8310]  INFO -- : worker=0 spawned pid=8310
+I, [2014-08-05T05:21:53.299996 #8310]  INFO -- : Refreshing Gem list
+I, [2014-08-05T05:22:06.548845 #8310]  INFO -- : worker=0 ready
+I, [2014-08-05T05:22:06.819104 #8312]  INFO -- : worker=1 ready

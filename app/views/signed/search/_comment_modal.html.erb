@@ -1,0 +1,39 @@
+<div id="myCommentMoodModal-<%= result.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "width :625px" feed-id="<%= result.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="cboxClose" ></button>
+    <h6 id="myModalLabel">Post Comments</h6>
+  </div>
+  <div class="modal-body">
+    <% if result.comments.count > 0 %>
+       <div class="row-fluid"  id="heart_rating_<%= result.id %>"><%= render "/signed/feeds/comment_emotions", :feed => result %></div>
+       <div class="hero-unit span_content" style="background-color:rgb(231,235,242);" >
+         <div class="row-fluid" id="comments_count_<%= result.id %>"><%= render "/signed/feeds/comments_count", :feed => result %></div>
+         <div id="new_comment_<%= result.id %>"></div>
+         <% result.comments.reverse.each do |comment| %>
+            <% if comment.user_id == current_user.id %>
+              <%= render "/signed/feeds/comment", :comment => comment, :feed => result %>
+            <% elsif comment.visibility == 1 %>
+              <%= render "/signed/feeds/comment", :comment => comment, :feed => result %>
+<!--             <%# elsif comment.visibility == 0 %>
+              <%# if result.user_id == current_user.id %>
+                <%#= render "/signed/feeds/comment", :comment => comment, :feed => result %>
+              <%# end %> -->
+            <% elsif comment.visibility == 2 %>
+              <% if result.user_id == current_user.id %>
+                <%= render "/signed/feeds/comment", :comment => comment, :feed => result %>
+              <% else %>
+                <% visible_to_users = comment.comment_privacies.map(&:user_id) %>
+                <% if visible_to_users.include?(current_user.id) %>
+                  <%= render "/signed/feeds/comment", :comment => comment, :feed => result %>
+                <% end %>
+              <% end %>
+            <% end %>
+         <% end %>
+       </div>
+    <% else %>
+     <div id="feed_comments_none_<%= result.id %>">
+        No comment found.
+      </div>
+    <% end %>
+  </div><br>
+</div>

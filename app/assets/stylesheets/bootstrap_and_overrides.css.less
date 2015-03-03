@@ -1,0 +1,501 @@
+@import "bootstrap.css";
+@import "token-input-facebook.css";
+@import "dd.css";
+@import "bootstrap_datepicker.css";
+
+body {
+  background-color:#2b5464;
+  background-size:100%;
+  margin:0px;
+}
+
+.navbar-inner {
+  background-color:red;
+}
+
+a.home_page {
+  font-style: normal;
+  color:#d3d3d3!important;
+  margin-right:10px;
+  filter:Glow(color=#ff0000, strength=12);
+}
+li.home_page {
+  list-style-type: none;
+  padding: 10px;
+}
+
+a.disabled
+{
+    color: grey;
+    pointer-events: none;
+    cursor: default;
+}
+.accordion-heading .accordion-toggle {
+   padding: 0px;
+
+  // background-color: #BAD3FB;
+
+}
+
+.accordion-inner {
+  font-size:14px;
+}
+
+#change_pass {
+  font-size:80%;
+}
+
+div.transbox
+  {
+  width:410px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 5px ;
+  background-color:black;
+  opacity:0.8;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+  }
+
+.alert {
+
+  border-color: red;
+  background-color: white;
+
+  }
+
+.form_css {
+  margin-left: 20px;
+  margin-bottom:20px;
+ }
+
+.comment-reviews {
+   color:#014F87;
+   font-weight:500;
+   display:inline;
+   font-size:12px;
+}
+
+.comment-box {
+  background-color:rgb(231,235,242);
+  height:auto;
+}
+.hero-unit {
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 100%;
+  line-height: 15px;
+  background-color: #ffffff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit-main {
+  padding: 10px 0px 0px 60px;
+  height: 1000px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+
+}
+
+
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.hero-unit p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+}
+
+/*
+ .searchbar {
+    background: white url("/img/relayimg/search_icon.png") right no-repeat;
+    padding-left: 17px;
+    width:200px
+}
+*/
+
+.frt{
+  float:right;
+}
+
+.nav-icons {
+  float:left;
+  padding:10px;
+}
+
+.setting-icons {
+  float:left;
+  padding:0px;
+}
+
+
+
+
+ul {
+list-style:none;
+}
+
+ .sortable li, {
+      list-style: none;
+      border: 1px solid #CCC;
+      background: #F6F6F6;
+      font-family: "Tahoma";
+      color: #1C94C4;
+      margin: 10px;
+      padding: 5px;
+      height: 22px;
+                        width:200px;
+    }
+
+.anchor
+{
+  color:blue;
+}
+
+.noborder, .noborder tr, .noborder th, .noborder td {
+    border: none;
+}
+
+.post_type_drop
+{
+  background: #F6F6F6;
+  width: 150px;
+  font-style:italic;
+  height:30px;
+
+}
+
+.feed p
+{
+ font-size:14px;
+}
+
+.boxscroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.searchbar_homepage {
+    background: white url("search_icon.png") right no-repeat;
+    padding-left: 17px;
+    width:380px;
+
+
+}
+
+
+/* Override and classes used for Hover effect for dropdown  menu in feeds to delete or hide post*/
+
+
+
+ul.cssMenu, ul.cssMenu ul
+{
+	list-style:none;
+	margin:0; padding:0;
+	position: relative;
+
+}
+
+ul.cssMenu ul
+{
+        display:none; /*initially menu item is hidden*/
+         float:right;
+         width:100px;
+         min-height:30px;
+         border-radius: 2px ;
+         background-color:black;
+         opacity:0.8;
+         text-align: center;
+         filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+
+/* Hover effect for menu in feeds to delete or hide post*/
+ul.cssMenu li:hover > ul
+{
+	display:block;
+}
+.common_link_font{
+  font-size:12px;
+}
+.span_content{
+  font-size:12px;
+}
+/*#####################################################################*/
+
+
+/*
+  Image slider in wall page and circle wall page css
+*/
+span,applet,object,iframe,a,abbr,acronym,em,font,img { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+a:active { outline:none; }
+
+#container {
+  margin-left: auto ;
+  margin-right: auto ;
+  width:800px;
+  height:315px;
+  position:relative;
+}
+
+/*
+  Slideshow
+*/
+
+#slides {
+  position:relative;
+  z-index:100;
+}
+
+/*
+  Slides container
+  Important:
+  Set the width of your slides container
+  Set to display none, prevents content flash
+*/
+
+.slides_container {
+  float:left;
+  width:800px;
+  height:315px;
+  overflow:hidden;
+  position:relative;
+  display:none;
+}
+
+/*
+  Each slide
+  Important:
+  Set the width of your slides
+  If height not specified height will be set by the slide content
+  Set to display block
+*/
+
+.slides_container a {
+  width:800px;
+  height:315px;
+  display:block;
+}
+
+.slides_container a img {
+  display:block;
+}
+
+/*
+  Pagination
+*/
+
+.pagination {
+  margin:20px -5px 30px;
+  width:100px;
+}
+
+.pagination li {
+  float:left;
+  margin:15px 1px;
+  list-style:none;
+}
+
+.pagination li a {
+  display:block;
+  width:12px;
+  height:0;
+  padding-top:12px;
+  background-image:url(/img/pagination.png);
+  background-position:0 0;
+  float:left;
+  overflow:hidden;
+}
+
+.pagination li.current a {
+  background-position:0 -12px;
+}
+
+.deal
+{text-decoration:none;color:white;}
+.deal:hover
+{text-decoration:underline;color:white;}
+
+
+/*#####################################################################*/
+
+/*
+  on hover zoom images
+*/
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width: none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+/*
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#000;}
+#colorbox{}
+    #cboxContent{margin-top:20px;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{border:5px solid #fff; background:#fff;}
+        #cboxTitle{position:absolute; top:-20px; left:0; color:#ccc;}
+        #cboxCurrent{position:absolute; top:-20px; right:0px; color:#ccc;}
+        #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
+        #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(/controls.png) no-repeat top left; width:28px; height:65px; text-indent:-9999px;}
+        #cboxPrevious:hover{background-position:bottom left;}
+        #cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(/controls.png) no-repeat top right; width:28px; height:65px; text-indent:-9999px;}
+        #cboxNext:hover{background-position:bottom right;}
+        #cboxLoadingOverlay{background:#000;}
+        #cboxLoadingGraphic{background:url(/img/relayimg/load.gif) no-repeat center center;}
+        #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(/img/relayimg/controls.png) no-repeat top center; width:38px; height:19px; text-indent:-9999px;}
+        #cboxClose:hover{background-position:bottom center;}
+
+
+.date
+{
+  font-size:11px;
+}
+
+.bootstrap-timepicker.dropdown-menu {
+    border-radius: 4px 4px 4px 4px;
+    display: none;
+    left: 0;
+    margin-top: 1px;
+    padding: 4px;
+    top: 0;
+    min-width: 10px;
+    z-index: 99999;
+}
+.bootstrap-timepicker.dropdown-menu.open {
+    display: inline-block;
+}
+.bootstrap-timepicker.dropdown-menu:before {
+    border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    content: "";
+    left: 6px;
+    position: absolute;
+    top: -7px;
+}
+.bootstrap-timepicker.dropdown-menu:after {
+    border-bottom: 6px solid #FFFFFF;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    content: "";
+    left: 7px;
+    position: absolute;
+    top: -6px;
+}
+.bootstrap-timepicker.modal {
+    margin-left: -100px;
+    margin-top: 0;
+    top: 30%;
+    width: 200px;
+}
+.bootstrap-timepicker.modal .modal-content {
+    padding: 0;
+}
+.bootstrap-timepicker table {
+    margin: 0;
+    width: 100%;
+}
+.bootstrap-timepicker table td {
+    height: 30px;
+    margin: 0;
+    padding: 2px;
+    text-align: center;
+}
+.bootstrap-timepicker table td span {
+    width: 100%;
+}
+.bootstrap-timepicker table td a {
+    border: 1px solid transparent;
+    display: inline-block;
+    margin: 0;
+    outline: 0 none;
+    padding: 8px 0;
+    width: 3em;
+}
+.bootstrap-timepicker table td a:hover {
+    background-color: #EEEEEE;
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+}
+.bootstrap-timepicker table td a i {
+    margin-top: 2px;
+}
+.bootstrap-timepicker table td input {
+    margin: 0;
+    text-align: center;
+    width: 25px;
+}
+.bootstrap-timepicker-component .add-on {
+    cursor: pointer;
+}
+.bootstrap-timepicker-component .add-on i {
+    display: block;
+    height: 16px;
+    width: 16px;
+}
+
+.hash_tags:hover {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+
+.hash_tags > a:hover {
+    text-decoration: none;
+  }
+.hash_tag_signed {
+   top: 25px;
+   left: 680px;
+width: 272px;
+   display: block;
+}
+.hash_tag_unsigned {
+   top: 108px;
+   left: 558px;
+   width: 254px;
+   display: block;
+}
+.submit_buttion_css {
+  margin-left:180px;
+}
+.simple_form_for_css {
+  margin-top: 35px;
+  margin-left:-60px;
+}
+textarea {
+  border:2px solid #ccc;
+  padding: 10px;
+  vertical-align: top;
+  width: 25%;
+}
+
+.animated {
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  transition: height 0.2s;
+}

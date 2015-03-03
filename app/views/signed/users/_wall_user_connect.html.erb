@@ -1,0 +1,18 @@
+<% if (FriendRequest.where(:user_id.in => [current_user.id, user.id ] , :friend_id.in => [user.id, current_user.id]).to_a.empty?) %>
+
+  <%= link_to image_tag("/img/friends/BecomeFriend.png"), add_friend_signed_users_path(:friend_id => user.id),:onclick => "$(this).replaceWith('Pending Connection')", :remote => true %>
+
+<% elsif !(FriendRequest.where(:user_id.in => [current_user.id, user.id ] , :friend_id.in => [user.id, current_user.id], :approve => true).to_a.empty?) %>
+
+    <img src="/img/friends/FriendConnected.png">
+
+<% elsif !(FriendRequest.where(:user_id.in => [current_user.id ] , :friend_id.in => [user.id], :approve => nil).to_a.empty?) %>
+
+    <img src="/img/friends/FriendRequest.png">
+
+
+<% elsif !(FriendRequest.where(:user_id.in => [user.id ] , :friend_id.in => [current_user.id], :approve => nil).to_a.empty?) %>
+  <%= link_to "+1 Respond to friend Request ", "#", :class => "common_link_font" %>
+<% else %>
+  <%= link_to "+1 donno", "#", :class => "common_link_font" %>
+<% end %>

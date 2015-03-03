@@ -1,0 +1,37 @@
+<script>
+
+$(document).on('click', '.filter_comments', function(){
+    $(this).siblings('#showAll').show()
+    //$('#showAll').show();
+})
+
+</script>
+    <%#= stylesheet_link_tag "style", :media => "all" %>
+
+
+  <%= javascript_include_tag('feed.js.erb') %>
+
+
+<div class = "span18">
+  <br>
+  <div class="row-fluid">
+    <%= render "/signed/feeds/update_heart_rate", :feed => feed %>
+  </div> <br>
+<% if feed.comments.count > 0 %>
+  <div class ="row-fluid comment_s" >
+    <%= link_to "Filter comments..", "javascript:void(0)" , class: "filter_comments" %>
+  
+    <span id="showAll" style="display:none;">
+      <%= link_to "All", "#", :onClick => "filter_comments('All', $(this).attr('post_id'),''); $(this).parent('#showAll').hide();", :post_id => feed.id  %>
+    
+      <% CommentMood.order_by("order ASC").each do |cm| %>
+        <% image_tag  cm.disabled_image, :title => cm.name, :onclick => "filter_comments($(this).attr('comment_mood_id'),$(this).attr('post_id'), $(this).attr('comment_mood_name') );$(this).parent('#showAll').hide();",:comment_mood_id => cm.id, :post_id => feed.id, :id => "comment_mood_imag_#{feed.id}-#{cm.id}", :comment_mood_name => cm.name %>
+      <% end %>
+     <% Comment_moods.keys.each do |no| %>
+        <%= image_tag "/img/Emotions/Disabled/#{no}new_heart_off.png", :title => "#{Comment_moods[no]}", :onclick => "filter_comments($(this).attr('comment_mood_id'),$(this).attr('post_id'), $(this).attr('comment_mood_name') );$(this).parent('#showAll').hide();",:comment_mood_id => no, :post_id => feed.id, :id => "comment_mood_image_#{feed.id}-#{no}", :comment_mood_name => "#{Comment_moods[no]}" %><!-- <span class="line">|</span> -->
+     <% end %>
+    </span>
+  </div>
+<% end %>
+<br>
+</div>

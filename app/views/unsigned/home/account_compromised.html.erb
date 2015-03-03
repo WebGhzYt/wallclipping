@@ -1,0 +1,19 @@
+    <%= stylesheet_link_tag "style", :media => "all" %>
+<header class="clearfix">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+  
+</div>
+  
+</header>
+<%= render('shared/flash_messages') %>
+
+<div id="account_compromised">
+  <%= render "account_compromised_partial" %>
+</div>
+
+
+
+

@@ -1,0 +1,24 @@
+<% current_user.build_account_setting if current_user.account_setting.nil? %>
+<%= render "shared/flash_messages"%>
+  <h3> Status Profile Settings </h3>
+  <% user = @user.nil? ? current_user : @user %>
+  <%= simple_form_for [:signed, user], :html => {:class => 'form-horizontal'}, :remote => true do |user| %>
+      <%= hidden_field_tag :partial_name, '', :value => "status" %>
+      <%= user.fields_for :account_setting do |f|  %>
+      <%= f.input :about_me, :label => 'About me:' %>
+      <%= f.input :address, :label => "Relationship Status", :collection => ["Single","Married", "Complicated"], :prompt => "Please Select" %>
+      <%#= f.input :country_name, :label => 'Work@'%>
+       <label for="user_account_setting_attributes_address" class="select optional control-label">* Work@</label>
+       <div class = "controls">
+       <%= text_field_tag :country_name, current_user.account_setting.country_name %> 
+         </div>
+         <br>
+      <%= f.input :state_name, :label => 'Education' %>
+      <%= f.input :city, :label => 'Reside' %>
+      <%= f.input :postal_code, :label => 'Email' %>
+    <% end %>
+    <%= user.input :phone, :label => 'Contact#' %>
+    <input type="checkbox" class="controls"/> Recieve sms messages<br />
+    <%= user.button :submit ,"Update",:class => 'btn-primary' %>
+  <% end %>
+

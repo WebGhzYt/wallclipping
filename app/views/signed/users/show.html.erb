@@ -1,0 +1,140 @@
+<!-- bxSlider Javascript file -->
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});
+</script>
+<script src="/assets/jquery.bxslider.js"></script>
+<!-- bxSlider CSS file -->
+<link rel="stylesheet" type="text/css" href="/assets/jquery.bxslider.css" media="all" /> 
+
+    <%#= stylesheet_link_tag "style", :media => "all" %>
+<div class="hero-unit" adjustTd=true>
+  <%= render "shared/flash_messages"%>
+  <span  style="color:#1B7AE0;font-weight:bold">
+    <% if @user.display_name.blank? %>
+      <%= @user.first_name.capitalize + " " + @user.last_name.capitalize %>
+    <% else %>
+      <%= @user.display_name.capitalize %>
+    <% end %>
+  </span></br></br>
+
+  <div id="myCarousel" class="bxslider ">
+      <% if @user.banner_images.count == 0 %>
+        <div class="active item">
+          <img src="/img/default_banner_image.jpg" />
+        </div>
+      <% else %>
+        <div class="active item">
+            <%= image_tag @user.banner_images.first.banner_image_url %>
+         </div>
+         <% count = 0 %>
+         <% @user.banner_images.each do |bi| %>
+           <% count += 1 %>
+           <% if count != 1 %>
+             <div class="item">
+               <%= image_tag bi.banner_image_url %>
+             </div>
+           <% end %>
+          <% end %>
+      <% end %>
+
+             <!-- Carousel nav -->
+<!-- 
+        <a  href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a  href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+  </div>
+
+  <div class="span6 offset11">
+    <% if @user != current_user %>
+     <!-- <%= render "signed/users/wall_user_follow", :user => @user %> -->
+      <%= render "signed/users/wall_user_connect", :user => @user %>
+     <% end %>
+  </div><br><br><br>
+
+  <div id="chronicle_content" class="chronicont_s">
+    <!-- hard coded max-width according to the image width -->
+    <!--<div class="well well-small" style="max-width:800px;"><h6>My Social Factor</h6></div>-->
+          <h3 class="user-name">My Status:</h3>
+            <div class="chrondata">
+              <div class="view_rows">
+                <div class="view-label">About Me:</div>
+                <div class="view-span">
+                  <% if @user.account_setting.present? and @user.account_setting.about_me.present?%>
+                     <%= @user.account_setting.about_me %>
+                  <% else %>
+                      NA 
+                  <% end %>
+                </div>
+                </div>
+               <div class="view_rows">
+                <div class="view-label">Relational Status:</div>
+                <div class="view-span">
+                    <% if @user.account_setting.present? and @user.account_setting.address.present? %>
+                       <%= @user.account_setting.address %>
+                    <% else %>
+                        NA 
+                    <% end %>
+                </div>
+                </div>
+                <div class="view_rows">
+                <div class="view-label">Work:</div>
+                <div class="view-span">
+                    <% if @user.account_setting.present? and @user.account_setting.country_name.present? %>
+                       <%= @user.account_setting.country_name %>
+                    <% else %>
+                        NA 
+                    <% end %> 
+                </div>
+                </div>
+              <div class="view_rows">
+                <div class="view-label">Education:</div>
+                <div class="view-span">
+                    <% if @user.account_setting.present? and @user.account_setting.state_name.present?%>
+                       <%= @user.account_setting.state_name  %>
+                    <% else %>
+                        NA 
+                   <% end %>
+                </div>
+                </div>
+              <div class="view_rows">
+                <div class="view-label">Location:</div>
+                <div class="view-span">
+                   <% if @user.account_setting.present? and @user.account_setting.city.present?%>
+                      <%= @user.account_setting.city %>
+                   <% else %>
+                       NA 
+                   <% end %>
+                </div>
+                </div>
+              <div class="view_rows">
+                <div class="view-label">Email:</div>
+                <div class="view-span">
+                    <% if @user.account_setting.present? and @user.account_setting.postal_code.present?%>
+                       <%= @user.account_setting.postal_code %>
+                    <% else %>
+                        NA 
+                    <% end %>
+                </div>
+                </div>
+              <div class="view_rows">
+                <div class="view-label">Contact#:</div>
+                <div class="view-span">
+                    <% if @user.account_setting.present? and  @user.phone.present?%>
+                       <%= @user.phone%>
+                    <% else %>
+                       NA 
+                    <% end %>
+                </div>
+                </div>
+             <% @details.each_with_index do |detail| %>
+              <% unless detail.hidden and @user.id != current_user.id %>
+               <div id="chronicle_content" class="chronicont_s">
+                  <h3 class="user-name"><%= detail.title %>:</h3>
+                    <%= detail.details %>
+               </div>
+              <% end %>
+             <% end %>
+            </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <link rel="stylesheet" type="text/css" href="/assets/style.css" media="all" /> 
+     <style type="text/css">
+     
+        .trans {
+          opacity: 0.9;
+          background-color: black;
+          padding: 1px;
+          width:809px;;
+          word-spacing: 0.2em;
+         }
+
+      </style>
+       <script>
+       $(document).ready( function(){
+             var custom_height=$(window).height();
+             $('.wrapper').css('min-height',custom_height);     
+             $(window).resize(function(){
+                       var custom_height=$(window).height();
+                       $('.wrapper').css('min-height',custom_height);
+                     }); 
+                });
+    </script>  
+  </head>
+ <body style="background:url('/img/homepage.png');">
+ <div class="wrapper">
+   <div class="loginhdr custom_header custom_loginhdr">
+    <div class="header_container">
+        <%= link_to(image_tag("/img/homepage_logo.png"), root_path) %><br><br>
+        <!-- <ul style="text-align: left ">
+          <li class="home_page"><a href="/unsigned/home/about_us" class="home_page"> About us </a></li>
+          <li class="home_page"><a href="/unsigned/home/terms" class="home_page"> Terms</a></li>
+          <li class="home_page"><a href="/unsigned/home/privacy_cookies" class="home_page"> Privacy & Cookies </a></li>
+          <li class="home_page"><a href="/unsigned/home/help_center" class="home_page"> Help Center </a></li>
+          <li class="home_page"><a href="/unsigned/home/whats_new" class="home_page"> What's New </a></li>
+          <li class="home_page"><a href="/unsigned/home/feed_back" class="home_page"> Feed back</a></li>
+          <li class="home_page" style="color:white">© 2015 Wallclipping</li>
+        </ul> -->
+   </div>
+  </div> 
+<div class="content">
+<div class="grid logindash dash">
+  <div class="col_5 loginsnd_block righthome ">
+      <%#= render "shared/search/search_form"%>
+    <div id="form_login" class="transbox"  >
+        <div class= "form_css"><br/>
+          <label style="color:white; font-size :200%">Login to dashboard</label><br/>
+          <%= render "unsigned/shared/form" %>
+          <span style="color:white">Trouble logging in the site ?</span><%= link_to 'Click here', help_unsigned_home_index_path %><br/><br/>
+       </div></div>
+    
+        <div class="transbox">
+        <div class="form_css"><br/>
+ 
+        <!--  <label style="font-size :130%; color :white">New to Wallclipping?<br/><br/> a href="unsigned/home/reasons">Learn More</a></label><br/ -->
+              <%= link_to(image_tag("/img/fb_logo_s.png"), "/auth/facebook/") %>
+
+          <%#= link_to 'Sign Up', register_unsigned_home_index_path, :class => "btn btn-info " %><br/><br/>
+      </div>
+  </div>
+ </div> 
+ </div>
+</div>
+
+  <footer class="custom_footer">
+   <div id="copyright">
+    <p class="trans">&copy; 2015 Wallclipping&nbsp;</p>
+    <div class="footer_nav">
+      <ul>
+        <li><a href="/unsigned/home/about_us">About us</a><span>|</span></li>
+        <li><a href="/unsigned/home/terms">Terms</a><span>|</span></li>
+        <li><a href="/unsigned/home/privacy_cookies">Privacy & Cookies</a><span>|</span></li>
+        <li> <a href="/unsigned/home/help_center">Help Center</a><span>|</span></li>
+        <li><a href="/unsigned/home/whats_new">Whats New</a><span>|</span></li>
+        <li><a href="/unsigned/home/feed_back">Feedback</a></li>
+      </ul>
+    </div>          
+  </div>
+ </footer>
+   
+</div>
+ </body>
+</html>

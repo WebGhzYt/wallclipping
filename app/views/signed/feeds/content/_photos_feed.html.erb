@@ -1,0 +1,12 @@
+<% begin %>
+  <% feed_image = FeedImage.find_by(feed_id: feed.id) %>   
+  <%#= image_tag feed_image.feedimage_url, :size => "360x270", id: 'pdf_img_'+feed.id %>
+  <%#= hidden_field_tag :feed_image_path, feed_image.feedimage.path, :id => "feed_image_path_"+feed.id %>
+  <%#= link_to image_tag( FeedImage.extension_image(feed_image.feedimage_url)), signed_feeds_pdf_path(:feed_image_path => feed_image.feedimage.path) %>
+  <%= link_to image_tag(FeedImage.extension_image(feed_image.feedimage_url)), feed_image.feedimage.url %>
+<% rescue %>
+  <span class="span_content"> File not found or removed at source.</span>
+<% end %>
+
+<br>
+<%= render "/signed/feeds/feed_message", :feed => feed %>

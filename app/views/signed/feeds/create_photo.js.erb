@@ -1,0 +1,16 @@
+<% if @feed_image.present? %>
+	$('.feed_photo_id').val('<%=@feed_image.id%>');
+	$('.file_upload_status').html('File uploaded');
+	document.getElementById("myButton1").disabled=false;
+<%end%>
+<% if @event_image.present? %>
+	$('#event_photo_id').val('<%=@event_image.id%>');
+	$('.image_preview').html('<img src="<%= @event_image.eventimage.url(:eventimage) %>">');
+	document.getElementById("myButton1").disabled=false;
+<% end %>
+<% if @deal_image.present? %>
+	$('#deal_photo_id').val('<%=@deal_image.id%>');
+	$('.image_preview').html('<img src="<%= @deal_image.dealimage.url(:dealimage) %>">');
+	document.getElementById("myButton1").disabled=false;
+<% end %>
+$('#loader').hide();

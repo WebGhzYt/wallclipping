@@ -1,0 +1,10 @@
+<% unless @tags.blank? %>
+  <% class_hash=current_user.present? ? "popover fade bottom in hash_tag_signed" : "popover fade bottom in hash_tag_unsigned" %>
+  <div class="<%= class_hash %>">
+    <% (@tags.blank? ? [] : @tags.results).each do |tag| %>
+      <div class="popover-content hash_tags" >
+        <%= link_to tag.name, "#", :onclick => "send_search('#{tag.name}')" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

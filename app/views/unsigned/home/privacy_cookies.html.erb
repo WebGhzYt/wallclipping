@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag "style", :media => "all" %>
+<% if session[:user_id] %>
+  <header class="clearfix"><div class="headercenter"> <%= render "/signed/base/header" %></div></header>
+<% else %>
+<header class="clearfix">
+	<div class="headercenter">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+  <div class="span11">
+  <br>
+<%= form_tag unsigned_search_index_path, :method => :get do %>
+  <div class="input-append">
+    <select style="width:120px;" name="model_type" onchange="assign_type($(this).val())">
+      <option value="Feed" >Posts</option>
+      <option value="User">Connections</option>
+    </select>
+      <input class="span7" name="keyword" type="text" style="width:254px;" placeholder="Search public posts or profiles..." onkeyup="fetch_tags($(this).val())" id="tag_search" />
+    <span class="add-on" style="height:20px;"><input type="image" src="/img/relayimg/search_icon.png" /></span>
+  </div>
+<span style="padding-top: 30px;">
+<div id="hash_tags" style = "display:none;"></div></span>
+<% end %>
+    </div>
+  <br>
+  <div class="span5 pull-right">   
+    <font color="white">Already Member? </font> 
+    <%= link_to 'Log In', unsigned_home_index_path, :class => "btn btn-primary " %>
+  </div>
+</div>
+</div>
+</header>
+<% end %>
+<div class="span16 offset2 aboutfix">
+	<h3 style="color: #17365D">Privacy & Cookies</h3>
+	<ul>
+		<li>This Privacy Policy is effective as of  January 25th, 2015</li>
+		<li>Wallclipping respects the privacy of our users and has developed this Privacy Policy to demonstrate its commitment to protecting your privacy. As an individual using our website, we encourage you to read this Privacy Policy very carefully when using our websites or services or conducting business with us. By using our websites, you are accepting the practices described in this Privacy Policy.</li>
+		<li>If you have any questions about our privacy practices, please refer to the end of this Privacy Policy for information on how to contact us.</li>
+		<li><h4>Information Collected</h4>Wallclipping may collect from you both identifying and non-identifying personal information through our websites or other manner.</li>
+		<li>Information provided by you.  Wallclipping may require that you provide certain information to use the services on our site, including name, date of birth, phone number, email address, and time zone.  You may always decline to give any personal information requested by Wallclipping, but without the presentation of such information, Wallclipping may not be able to provide services to you.</li>
+		<li>Cookies. When you visit Wallclipping.com, we may assign your computer one or more cookies, to facilitate access to our websites, to personalize your online experience, and to record information about your visit to our websites. Through the use of a cookie, we also may automatically collect information about your online activity on our websites, such as the web pages you visit, the links or advertisements you click, or the other actions you conduct while visiting Wallclipping.com if you have enabled cookies.</li>
+		<li>IP Address. Wallclipping.com automatically collects your IP address, access times, and the referring website address for identification purposes.</li>
+		<li>Personal Information.  This website does not collect, save or store any personal information from visitors that simply browse this website, unless you voluntarily and intentionally provide it to us. We do not collect personal information without your knowledge or consent.
+        </li>
+		<li>Embedded Advertisements. Advertisements displayed on Wallclipping's web sites may be delivered via an advertising management service. When you view a web page on our web site that contains advertising provided one of our advertising management services, the advertising service company may place a cookie on or retrieve a cookie from your computer if you have enabled cookies.</li>
+		<li>User Communications.  Users of Wallclipping.com may from time to time contact Wallclipping with inquiries or requests.  Wallclipping will retain these communications in order to process and respond to these inquiries and requests.</li>
+		<li><h4>Information Shared With Other Site Users</h4>You will be able to update and customize your profile on Wallclipping.com, which may be available to users that browse the site. You may choose with whom you share such information within the website or make the information available to the general public. It is important to be aware that information you post on the site through its various functions may be made available to the general public so share with care.</li>
+		<li>Additionally, those users browsing the site without logging in may search you by the name with which you register to the site.</li>
+		<li><h4>Third Party Links</h4>There are links on the Site that lead to third party sites, including those of advertisers. Wallclipping is not responsible for the privacy policies of those sites or the cookies those sites use. In addition because Wallclipping has no control over such sites and resources, it is solely your responsibility to be cognizant of the privacy policies of such sites and the information that the owners of such sites share with third parties. Wallclipping does not endorse and is not liable for any content, advertising, products, or other materials on or available from such sites or resources.</li>
+		<li><h4>Disclosure of Information</h4>Wallclipping may disclose your information:  (1) in response to a subpoena, court order, or a request for cooperation from law enforcement agencies; (2) to defend against legal claims; (3) when we believe disclosure is appropriate in connection with efforts to investigate, prevent, or take action regarding illegal activity, fraud or wrongdoing; (4) to protect the rights, property, and safety of our company, users, employees or others; (5) to enforce our website terms; (6) in the event of a substantial corporate transaction, such as the sale of our business, merger, or consolidation; or (7) as otherwise required by law.</li>
+		<li>Wallclipping reserves the right to share non-personally identifiable information and aggregated data (e.g., anonymous usage data, platform types, referring/exit URLs, etc.) with third parties.</li>
+		<li>Wallclipping may share personally identifiable information in the event that you request identity verification. In such an event, we may send some personally identifiable information to a third party identity verification vendor, but only for the purpose of confirming your identity after such request is made.</li>
+		<li><b>The previous paragraphs notwithstanding, Wallclipping will not disclose your information, and uses all of the information collected solely for analytical purposes connected to the operation of the website.</b></li>
+		<li><h4>Protection of Your Information</h4>We take appropriate security measures (including physical, electronic and procedural measures) to help safeguard your personal information from unauthorized access and disclosure.  Access to your personal information is restricted to Wallclipping's employees, contractors, and agents, for whom the information is necessary to maintain and improve our services.</li>
+		<li>Users should also take care with how they handle and disclose their personal information. Please refer to the Federal Trade Commission's website at http://www.ftc.gov/bcp/menus/consumer/data.shtm for information about how to protect yourself against identity theft.</li>
+		<li><h4>Children Accessing Our Web Site Or Products</h4>We do not knowingly collect any personal information from children under the age of 13 and our products and website are not intended for the use of such children.  Should it be revealed to us that we have inadvertently collected information from children under the age of 13, then we will take reasonable measures to eliminate such data from our servers.</li>
+		<li><h4>Modification of this Privacy Policy</h4>Wallclipping reserves the right to, and may from time to time, make changes to this privacy policy.</li>
+		<li>Additionally, if you have any concerns about security on Wallclipping.com, you can email us at contact@wallclipping.com with any questions.</li>
+	</ul>
+</div>
+<footer class="clearfix footer_main">
+  <div id="copyright">
+    <p><span class="copyrightf">&copy; Wallclipping</span>
+        <a href="/unsigned/home/about_us">About us</a>   
+        <a href="/unsigned/home/terms">Terms</a>  
+        <a href="/unsigned/home/privacy_cookies">Privacy & Cookies</a>  
+        <a href="/unsigned/home/help_center">Help Center</a>  
+        <a href="/unsigned/home/whats_new">What's New</a>  
+        <a href="/unsigned/home/feed_back">Feedback</a></p>
+  </div>
+</footer>

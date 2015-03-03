@@ -1,0 +1,43 @@
+<script>
+$(document).ready(function() {
+  $("#post_type_id_post_type").data("dd");
+});
+</script>
+<div class="hero-unit" id = "span_post_type" adjustTd=true>
+  <img onclick="MinPost(this, 'minus.png')"  style="float:right;" src="/img/minus.png" ></img>
+    <div style="width:425px;font-style:italic;color;font-size:14px; margin-bottom:15px;">
+        <div style="width:373px;" class="post_type_drop" id="post_type_id_post_type" name="post_type_id[post_type]" data-value="<%= @feed_types.first.id %>" >&nbsp;
+         <% @feed_types.each do |ft| %>
+              <% if current_user.account_setting.user_type.present? and current_user.account_setting.user_type == 'Non-personal'%>
+                  <% case ft.post_type %>
+                   <% when "Status" %>
+                       <%= link_to (image_tag('/img/relayimg/update_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')", remote: true %>&nbsp;
+                     <% when "File" %>
+                       <%= link_to (image_tag('/img/relayimg/file_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %>&nbsp;
+                     <%# when "Video" %>
+                       <%#= link_to (image_tag('/img/relayimg/video_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %><!-- &nbsp; -->
+                     <% when "Event" %>
+                      <%= link_to (image_tag('/img/relayimg/event_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %>&nbsp;
+                     <% when "Deal" %>
+                      <%= link_to (image_tag('/img/relayimg/deal.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %>
+                  <%end%> 
+              <% elsif current_user.account_setting.user_type.present? and current_user.account_setting.user_type == 'Personal'%>  
+                <% case ft.post_type %>
+                     <% when "Status" %>
+                        <%= link_to (image_tag('/img/relayimg/update_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')", remote: true %>&nbsp;
+                     <%# when "File" %>
+                        <%#= link_to (image_tag('/img/relayimg/file_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %><!-- &nbsp; -->                     
+                      <%# when "Video" %>
+                        <%#= link_to (image_tag('/img/relayimg/video_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %><!-- &nbsp; -->
+                     <% when "Event" %>
+                        <%= link_to (image_tag('/img/relayimg/event_feedpage.png') + ' ' + ft.post_type), 'javascript:void(0)', onclick: "$(this).parent().data('value', '#{ft.id}'); fetch_form('#{ft.id}')" %>&nbsp;
+                 <% end %>
+             <% else %>
+
+             <% end %>
+         <% end %>
+        </div>
+
+    </div>
+    <div id="form_div"></div>
+</div>

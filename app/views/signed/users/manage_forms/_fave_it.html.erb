@@ -1,0 +1,39 @@
+<div class="fave_it_edit_setting"> 
+ <h3>Edit Fave-it options</h3>
+	<% (Emotion.order_by "order ASC").each do |emotion| %>
+		<div class="row-fluid">
+		  <% emotion_name = EmotionLabel.get_emotion_name(emotion.name,emotion.order,current_user.id) %> 
+			<% img = image_tag('/assets/emotion_color/'+emotion.order.to_s+'.png', :alt => "") %>
+			<div>
+				<%= img %>
+				<%= emotion_name %>
+			</div>
+			<div style="margin-top:10px!important;">
+				<%= text_field_tag(:emotion_name, emotion_name, :id => "update_emotion_#{emotion.order}", :style => "margin-top:10px;margin-right:5px;") %>
+				<%=image_tag('/assets/floopy_icon.png', :onclick => "UpdateEmotion(#{emotion.order});") %>
+				<%=image_tag('/assets/cancel_icon.png', :onclick => "ResetEmotion(#{emotion.order});")%>
+			</div>
+		</div><hr>
+	<% end %>
+</div>
+
+<script>
+   function ResetEmotion(emotion_order)
+    {
+      $('#update_emotion_' + emotion_order).val(" ");
+    }	
+
+    function UpdateEmotion(emotion_order)
+    {
+    	var emotion_name = $('#update_emotion_' + emotion_order).val();
+    	if (emotion_name)
+	      $.ajax({
+	      url: "/signed/user/emotions_label",
+	      data: {emotion_name: emotion_name, emotion_order: emotion_order},
+	      dataType: 'script'
+	     });
+	    else
+	    	alert("value can not be blank!");
+
+    }
+</script>

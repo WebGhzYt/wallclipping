@@ -1,0 +1,66 @@
+<script>
+  function taguser(){
+    $("#taguser_id").show();
+  }
+
+  function taguserclose(){
+    $("#taguser_id").hide();
+  }
+
+  function addlink(){
+    $("#addlink_id").show();
+  }
+
+   function addlinkclose(){
+    $("#addlink_id").hide();
+  }
+
+  function showdealimage(){
+    $("#deal_video").show(); 
+    $("#deal_image input").attr("value", "");
+    $("#deal_image").hide();
+    $("#event_table_for").attr("style", "position: relative; bottom: 132px")
+  
+  }
+
+  function hidedealimage(){
+
+    $("#deal_video input").attr("value","");
+    $("#deal_video").hide();
+    $("#deal_image").show();
+    $("#event_table_for").attr("style", "bottom: 0px")
+
+  }
+
+  function fetch_friends() {
+    $.ajax({
+      url: "/signed/feeds/fetch_friends",
+      dataType: 'script'
+    });
+  }
+
+  function display_hash_content() {
+    var div_content = "";
+    var con = $("#feed_feed").val();
+    div_content = "" + con.match(/\#\D\w+/g);
+    if (div_content != 'null'){
+      $("#feed_hash_tags").val(div_content);
+    }
+  }
+
+</script>
+
+<% case @feed_type.post_type %>
+ <%# when "Blog" %>
+     <%#= render "signed/feeds/forms/status_update" %>
+ <% when "Status" %>
+     <%= render "signed/feeds/forms/status_update" %>   
+ <% when "File" %>
+     <%= render "signed/feeds/forms/photos" %>
+ <%# when "Video" %>
+     <%#= render "signed/feeds/forms/videos" %>
+ <% when "Event" %>
+     <%= render "signed/feeds/forms/events" %>
+ <% when "Deal" %>
+       <%= render "signed/feeds/forms/deals" %>
+<% end %>

@@ -1,0 +1,22 @@
+<% if @feed %>
+ hide_comment("All","<%= @comment.feed.id %>", '');
+
+ $("#heart_rating_<%= @comment.feed.id %>").replaceWith("<div class='row-fluid' id='heart_rating_<%= @comment.feed.id %>'><%= escape_javascript( render '/signed/feeds/comment_emotions', :feed => @feed) %></div>");
+
+ if($("#new_comment_<%= @comment.feed.id %>").length > 0) {
+   $("#new_comment_<%= @comment.feed.id %>").prepend("<%= escape_javascript(render 'comment', :comment => @comment, :feed => @feed ) %>");
+   $("#comments_count_<%= @feed.id %>").replaceWith("<div id='comments_count_<%= @feed.id %>'><%= escape_javascript(render('comments_count', :feed => @feed)) %></div>");
+ }
+ else {
+
+   $("#feed_comments_none_<%= @feed.id %>").replaceWith("<%= escape_javascript(render 'feed_count_commentslist', :feed => @feed ) %></div>");
+ }
+<% else %>
+bootbox.alert("Post has been deleted at the source.", function() {
+  $(".modal-footer").trigger("click");
+});
+<% end %>
+
+$("#comment_empty_<%= params[:feed_id] %>").attr('value', '');
+$("#myCommentMoodModal-<%= @feed.id %>").modal('hide');
+replace_content();

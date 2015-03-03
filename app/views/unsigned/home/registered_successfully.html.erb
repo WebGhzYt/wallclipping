@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "style", :media => "all" %>
+<header class="clearfix">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+  
+</div>
+  
+</header>
+
+<div class="container">
+  <div class="row-fluid">
+    <div class="span20">
+       <center>
+          <h3 style="font-size:150%;color:#2C4762">You Are Registered</h3>
+
+          <h5> Activation link has been sent to your email </h5>
+
+          <h5>click that link to activate your account</h5><br><br><br>
+
+          <h6>If you have not received any activation link please click </h6><%=link_to "Click Here",resend_email_unsigned_home_index_path%></h5>
+
+          <%#= render "footer" %>
+        </center>
+    </div>
+  </div>
+</div>

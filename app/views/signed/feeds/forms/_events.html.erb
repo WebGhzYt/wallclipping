@@ -1,0 +1,98 @@
+<%# @feed.build_event_image %>
+<%=simple_form_for @event_image, url: create_photo_signed_feeds_path, remote: true do |f|%>
+  <div id="event-img" style='position:relative;top:149px;width:50%'>
+    <%= f.input :eventimage,:as => :file,label:false %>
+    <div class="image_preview" style="width: 110px;position: absolute;top: 35px;height: auto;">
+    </div>
+    <%=image_tag 'Spinner.gif', id: 'loader', style: "position:absolute;left:258px;top:8px;display:none"%>
+  </div>
+<%end%>
+<%= simple_form_for([:signed, @feed], :remote => true) do |f| %>
+  <%= f.input :feed, :as => :text, :placeholder => 'What do you recommend today?' , label:false, :input_html => {  :rows => 3, :style => "resize: none; width:260px; position:relative; top:-51px;", :onkeyup => "display_hash_content()"} %>
+  <div style="position:relative;top:-50px;z-index: 100;">
+    <input type="radio" name ='opportunity'  onclick="if (this.checked != 'true') { showdealimage();$('.new_event_image').css('visibility','hidden');} else { hidedealimage() }; $('#is_photo').val(false)" checked>
+      <p style = "display :inline;font-size:13px;">Add Video Link</p>
+
+    <input type="radio" name ='opportunity'  onclick="if (this.checked != 'true') { hidedealimage();$('.new_event_image').css('visibility','visible');} else { showdealimage() }; $('#is_photo').val(true)">
+      <p style = "display :inline;font-size:13px;">Add Photo</p>
+
+    <!-- <div id="deal_image">  <%#= f.fields_for :event_image do |ei|
+          ei.input :eventimage,:as => :file,label:false
+         end %>
+    </div> -->
+    <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+    <%= f.input :feed_type_id, :as => :hidden, :input_html => {:value => @feed.feed_type_id} %>
+    <%= hidden_field_tag 'event_photo_id'%>
+    <%= hidden_field_tag 'is_photo', true %>
+  </div>
+ <table id="event_table_for">
+     <%= f.fields_for :feed_hash do |fh| %>
+    <div id= "deal_video" style="position: relative; top:-30px;">
+      <%= fh.input :video, :placeholder => 'Embedded video URL >' , label:false, :input_html => { :style => "color:grey;font-weight:200;font-style:italic;display:inline;font-size:13px;position:absolute;z-index:1;bottom:-20px;" } %>
+    </div>
+    <br><br><br><br>
+     <tr>
+      <td><%= fh.input :event_name, :placeholder => 'Title >' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px;position:relative;top:115px"} %>
+      </td>
+       </tr>
+
+     <tr>
+      <td> 
+        <%= f.select :sub_category_id, grouped_options_for_select(@sub_categories), {:prompt => "Select category for recommendation"} %>
+      </td>
+     </tr>
+
+
+     <tr><td> <%= fh.input :deal_sale_link, :placeholder => ' RSVP URL Link >' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %>   <br></td>
+     </tr>
+
+   <tr>
+    <td> <%= fh.input :event_location, :placeholder => 'Location >' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %>
+    </td>
+   </tr>
+
+
+   <tr>
+    <td> <%= fh.input :event_date, :placeholder => 'Expiration date >' , label:false,:input_html =>{:class => "datepicker",:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:100px"} %>
+    </td>
+   </tr>
+
+
+    </table>
+    <% end %>
+
+    <%= render "feed_channels", :f => f %>
+<% end %>
+
+<script>
+ $(document).ready(function() {
+   $("#event_form").msDropdown();
+   $("#event_form").data("dd");
+   $(".datepicker").datepicker({"autoclose": true});
+   $(".timepicker").timepicker({"autoclose": true});
+   $("#deal_video").show();
+   $('.new_event_image').css('visibility','hidden');
+   $("#event_table_for").attr("style", "position: relative; bottom: 132px")
+   $("#event_image_eventimage").change(function(){
+     $(".new_event_image").ajaxForm().submit();
+     // $(this).css('visibility','hidden');
+     $("#loader").show();
+    });
+  });
+ 
+ $(document).on('keyup', '#feed_feed_hash_video', function(){
+    if ($(this).val().trim().length > 0 ) {
+      $("#myButton1").attr("disabled", false);
+    }
+    else {
+      $("#myButton1").attr("disabled", true);
+    }
+  })
+
+</script>
+<style type="text/css">
+  .ddChild{
+    height:auto !important;
+  }
+</style>
+

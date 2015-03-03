@@ -1,0 +1,102 @@
+<script>
+    $(document).ready(function(){
+      
+            $('#header_popup .cat').hover(function(){
+            category = $(this).attr('id')
+            if (category == "cat1") {
+                       $("#cat3").css("background-color", "#f7f7f7");
+                       $("#cat2").css("background-color", "#f7f7f7");
+                       $("#c2").css("font-weight", "normal");
+                       $("#c3").css("font-weight", "normal");
+                       $("#cat1").css("background-color", "#e5e5e5");
+                       $("#c1").css("font-weight", "bold");
+                 }
+             else if (category == "cat2") {
+                       $("#cat3").css("background-color", "#f7f7f7");
+                       $("#cat1").css("background-color", "#f7f7f7");
+                       $("#c1").css("font-weight", "normal");
+                       $("#c3").css("font-weight", "normal");
+                       $("#cat2").css("background-color", "#e5e5e5");
+                       $("#c2").css("font-weight", "bold");
+                 } 
+             else if (category == "cat3") {
+                       $("#cat1").css("background-color", "#f7f7f7");
+                       $("#cat2").css("background-color", "#f7f7f7");
+                       $("#c2").css("font-weight", "normal");
+                       $("#c1").css("font-weight", "normal");
+                       $("#cat3").css("background-color", "#e5e5e5");
+                       $("#c3").css("font-weight", "bold");
+                }});
+
+            $('#header_popup .cat').hover(function(){
+              category = $(this).attr('id')
+              if (category == "cat1") {
+                $("#sub-cat2").hide();
+                $("#sub-cat3").hide();
+                 $("#sub-cat1").show();
+               }
+               else if (category == "cat2") {
+                $("#sub-cat1").hide();
+                $("#sub-cat3").hide();
+                $("#sub-cat2").show();
+               } 
+               else if (category == "cat3") {
+                $("#sub-cat1").hide();
+                $("#sub-cat2").hide();
+                $("#sub-cat3").show();
+               };
+            })
+
+            $("#header_popup").mouseleave(function(){
+                          $("#header_popup").hide();
+                      });
+    })
+
+</script>
+
+
+<div class="span21" style="background-color:#2b5464; " >
+  <span style="padding:10px; float: left; width:20%;"><%= link_to(image_tag("/img/homepage_logo.png"),root_path) %></span>
+
+  <div class="offset7" style="padding-top: 24px;float-left:30px;">
+<div class="span1 header_dropdown">
+  <div class="btn-group">
+   <img id='category'src = "/img/dropdown.png" width="30px" height="20px" onclick="my()" ></img>
+ 
+<div id = "header_popup" class="header_popup" style="padding:0px !important;height:195px;"> 
+       
+             <div class="span7" style="background-color:#f7f7f7;height:195px;">
+               <ul style="margin-top:25px;">
+                <h3 style="margin-left:10px;opacity:0.4;">Explore Recommendations</h3>
+                <li id="cat1" class="cat" style="width:135px!important;"><span id="c1" style="margin-left:20px;"><%= SubCategory.named_category @category_1.first.category %></span></li>
+                <li id="cat2" class="cat" style="width:135px!important;"><span id="c2" style="margin-left:20px;"><%= SubCategory.named_category @category_2.first.category %></span></li>
+                <li id="cat3" class="cat" style="width:135px!important;"><span id="c3" style="margin-left:20px;"><%= SubCategory.named_category @category_3.first.category %></span></li>
+              </ul>
+            </div>
+            
+             <div class="span9 subcat">
+                 <ul style="margin-top:20px;margin-left:22px;">
+                    <div id="sub-cat1" style="display:block;">
+                      <% @category_1.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>
+                    <div id="sub-cat2" style="display:none;">  
+                      <% @category_2.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>
+                    <div id="sub-cat3" style="display:none;">  
+                      <% @category_3.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>  
+                 </ul>
+             </div>
+        </div>
+ </div>
+</div>
+     <%= render "shared/search/search_form"%>
+
+</div>
+</div>

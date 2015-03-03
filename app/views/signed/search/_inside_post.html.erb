@@ -1,0 +1,33 @@
+    <%#= stylesheet_link_tag "style", :media => "all" %>
+
+<% @results.each do |result| %>
+  <div class="row-fluid">
+    <div class="span15">
+      <div class="row-fluid">
+        <div class="span2">
+          <%= image_tag result.user.profile_image_thumb %>
+        </div>
+        <div class="span18">
+          <%= render "/signed/feeds/feed_header", :feed => result %>
+        </div>
+      </div>
+    </div><br>
+
+    <!-- Feed Content -->
+    <%= render "/signed/feeds/feed_content", :feed => result %>
+    <!-- for moods -->
+      <br><span class="heart_rate">
+        <%= render "signed/feeds/update_heart_rate", :feed => result %>
+      </span>
+    <!-- Wow Pin Share -->
+     <span class="pin_share"><%= render "/signed/feeds/wow_pin_share",:feed => result %></span><br>
+
+    <!-- Emotions -->
+    <%= render "/signed/shared/emotions",:feed => result %>
+
+    <!-- for Comments -->
+    <a data-toggle="modal" data-target="#myCommentMoodModal-<%= result.id %>" href="#">Comments</a>
+    <%= render 'comment_modal', :result => result  %>
+  </div> <hr>
+
+<% end %>

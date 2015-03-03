@@ -1,0 +1,16 @@
+<% if controller.action_name == "index" %>
+  <script>
+      setTimeout(function () { $("#message").fadeOut(); }, 2000);
+       var FullscreenrOptions = {  width: 789, height: 500, bgID: '#bgimg' };
+       // This will activate the full screen background!
+      jQuery.fn.fullscreenr(FullscreenrOptions);
+  </script>
+ 
+  <img id="bgimg" src="/img/homepage.png" />
+<% else %>
+<!--  <%# unless controller.action_name == "landing_page" %>
+    <div class="span21" style="background-color:#2C4762; " >
+       <span style="padding:10px; float: left; width:20%;"><%#= link_to(image_tag("/img/homepage_logo.png"),root_path) %>erfr4efrfrf</span>
+    </div>
+  <%# end %> -->
+<% end %>

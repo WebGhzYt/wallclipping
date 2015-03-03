@@ -1,0 +1,16 @@
+<script>
+  function replace_content(){
+     <% if current_user.blank? %>
+        var search_path = "/unsigned/search?model_type=Feed&keyword=%23";
+     <% else %>
+        var search_path = "/signed/search?model_type=Feed&keyword=%23";
+     <% end %>
+      $('[strFmt="testReplace"]').each(function() {
+         var vanilla_html = $(this).html();
+          for (var i in vanilla_html.match(/\#\D\w+/g)) {
+             vanilla_html = vanilla_html.replace(vanilla_html.match(/\#\D\w+/g)[i], "<a href='" + search_path + vanilla_html.match(/\#\D\w+/g)[i].replace("#","") + "'>"+vanilla_html.match(/\#\D\w+/g)[i]+"</a>");
+          }
+         $(this).html(vanilla_html);
+      });
+  }
+</script>

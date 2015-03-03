@@ -1,0 +1,10 @@
+<div style="word-wrap:break-word;width:360px;font-size:12px;" strFmt="testReplace">
+
+  <% if feed.feed_type.post_type == 'Event' and feed.add_link.present? %>
+		<a href="<%= feed.add_link%>"style="font-size:16px;"> <%= feed.title.upcase unless feed.title.nil? %> </a>
+  <% else %>
+      <font style="font-size:14px;"><b> <%= feed.title.upcase unless feed.title.nil? %></b> </font>
+  <% end %><br>
+
+ <%= feed.feed %> </div><br>
+

@@ -1,0 +1,18 @@
+<ul class="cssMenu">
+   <li><a style="float:right"><img src="/img/relayimg/report_abuse.png"/></a>
+     <ul>
+       <% if feed.user == current_user %>
+         <li style="font-size:13px;font-style:italic;">
+          <%= link_to "Delete Post", deletepost_signed_feeds_path(:feed_id => feed.id, :type => "delete"), :remote => true %>
+         </li>
+       <% else %>
+        <li style="font-size:13px;font-style:italic">
+          <%= link_to "Hide Post", deletepost_signed_feeds_path(:feed_id => feed.id, :type => "hide"), :remote => true %>
+        </li>
+       <li id="abuse_<%= feed.id %>">
+         <%= link_to "Abuse", deletepost_signed_feeds_path(:feed_id => feed.id, :type => "abuse"), :remote => true if UserFeed.where(:feed_id => feed.id, :user_id => current_user.id, :abuse => true).empty? %> 
+       </li>
+      <% end %>
+     </ul>
+   </li>
+</ul>

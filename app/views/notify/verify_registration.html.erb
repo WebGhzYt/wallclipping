@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p> Hi There,<br>
+        You are the newest member of Wallclipping, the best of social networking platforms. We're excited to have you as a member and can't wait to see what you recommend.
+    </p>
+    <p>To complete signup, please click on the link below to verify your login email address <%= @user.login.email %></p>
+    <p><%=  verify_email_unsigned_home_index_url(:token => @user.verification_token, :host =>"www.wallclipping.com" ) %></p>
+    <p>Thanks for joining and happy recommending!</p>
+    <p>Your Wallclipping Team</p>
+    <p>------------------------------------------------<p>
+    <p> DO NOT REPLY TO THIS MAIL</p>
+    <p>------------------------------------------------ </p>
+  </body>
+</html>
+
+

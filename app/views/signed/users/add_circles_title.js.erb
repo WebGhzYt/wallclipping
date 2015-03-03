@@ -1,0 +1,5 @@
+$("#pjax-container").html("<%= escape_javascript(render('signed/users/circles/'+ params[:partial_name])) %>");
+
+<% if params[:partial_name1].present? %>
+  $("#second_container").html("<%= escape_javascript(render('signed/users/circles/'+ params[:partial_name1])) %>");
+<% end %>

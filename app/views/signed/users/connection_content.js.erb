@@ -1,0 +1,6 @@
+
+ userId="<%= @user.id %>";
+ connId =  "<%= params[:id] %>";
+   page = "<%= @page %>";
+$("#chronicle_content").replaceWith("<div id='chronicle_content'><%= escape_javascript(render(params[:partial_name])) %></div>");
+setTimeout(function(){connection_replace()},1000);

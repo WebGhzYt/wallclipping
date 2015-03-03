@@ -1,0 +1,53 @@
+var image_path_hash = new Object();
+<% Comment_moods.keys.each do |cm| %>
+ image_path_hash['<%= cm %>'] = {enabled_image:"/img/Emotions/Disabled/<%= cm %>new_heart_off.png", disabled_image:"/img/Emotions/Disabled/<%= cm %>new_heart_off.png" }
+<% end %>
+
+function filter_comments(comment_mood_id, post_id, comment_mood_name){
+	
+	$.each($("img[id^=comment_mood_image_"+post_id+"]"), function(){
+    if(comment_mood_id == "All"){
+      document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
+     }
+     else{
+        if($(this).attr('id') == "comment_mood_image_"+post_id+"-"+comment_mood_id){
+           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['enabled_image'];
+         } else{
+           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
+         }
+    }
+  });
+  // This is for hide comment logic
+  $.each($("div[comment_mood_post^=comment_mood_"+post_id +"]"),function(){
+    if(comment_mood_id == "All"){
+       $(this).show();
+       $("#comment_mood_count_"+post_id).html($("div[comment_mood_post^=comment_mood_"+post_id + "]").length/2);
+       $("#comment_mood_name_"+post_id).html("All"+" "+"comments - ");
+     }
+     else{
+        if($(this).attr('comment_mood_post') == "comment_mood_"+post_id+"-"+comment_mood_id){
+           $(this).show();
+         } else{
+           $(this).hide();
+         }
+        $("#comment_mood_count_"+post_id).html('');
+        $("#comment_mood_name_"+post_id).html(comment_mood_name);
+    }
+  });  
+}
+
+function add_thumb_icons_to_select(state) {
+  var originalOption = state.element;
+
+  if (!state.id) return state.text; // optgroup
+  return "<img class='flag' width='25' src='" + $(originalOption).data('img-src') +"'/>" + " " + state.text;
+}
+
+$("[id^=select_commenter_]").select2({
+  formatResult: add_thumb_icons_to_select,
+  formatSelection: add_thumb_icons_to_select,
+  width:300,
+  escapeMarkup: function(m) { return m; },
+  placeholder: "Select Commenter",
+  allowClear: true
+});

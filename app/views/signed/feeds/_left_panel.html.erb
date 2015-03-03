@@ -1,0 +1,129 @@
+<script>
+function enable_all() {
+    $("a[link_id=clickable]").each(function(){
+      $(this).attr('class', '') ;
+    });
+}
+
+function reset_all_icons() {
+
+   $("a[accord-main=accord]").each(function(){
+   $(this).attr('class', 'accordion-toggle collapsed') ;
+
+ });
+ }
+
+ $(document).ready(function(){
+      //for link color change
+      $("a[link_id=clickable]").click(function(){
+        enable_all();
+        $(this).attr('class', 'disabled');
+       });
+	//icon change
+    $("a[accord-main=accord]").click(function() {
+       reset_all_icons();
+      $(this).attr('class', 'disabled');
+    });
+
+    <% if controller.controller_name == "posts" %>
+      $("#account").click();
+    <% elsif controller.controller_name == "messages" %>
+      $("#account_message").click();
+    <% end %>
+
+});
+ 
+</script>
+   <div  class="hero-unit"  adjustTd=true>
+	<%= link_to(image_tag(current_user.profile_image), signed_user_path(:id => current_user.id)) %><br><br>
+    <img src="/img/relayimg/wall.png" /><% display_name = current_user.display_name.blank? ? current_user.first_name.capitalize + " "+ current_user.last_name.capitalize : current_user.display_name.capitalize %>
+    <%= link_to display_name, signed_user_path(:id => current_user.id) %>
+
+    <div>
+      <div class="" style="border: 0px">
+	        <div>
+	            <h6><%= image_tag("/img/leftpanel/friends.png") %> Connections | <%= link_to "Add",connections_signed_search_index_path %></h6>
+          </div>
+      <div >
+	    <div class="">
+	        <dl>
+            <dt><span><img src="/img/relayimg/updates_connections.png" /><small style="margin-left:5px">Updates</small></span></dt>
+             <dd style="margin-left:20px"><small><span><%= link_to "My Posts",signed_feeds_path(:feed_type => "my_posts"),:remote => true, :class => "common_link_font",:link_id =>"clickable",:id=>"mypost" %></span><br>
+             <span><%= link_to "Connection Feed", signed_feeds_path(:feed_type => "latest_news_feeds"), :remote => true,:id=>"clik",:class => "common_link_font", :link_id =>"clickable" ,:id=>"news" %></span><br>
+             <br></small></dd>
+                
+       
+         
+            <% unless current_user.connections.count == 0 %>
+             <dt><span><img src="/img/relayimg/Lists_connections.png" /><small style="margin-left:5px">Lists| <%= link_to "Edit","/signed/users/manage?form_type=create_list_names" , :class => "common_link_font", :link_id =>"clickable" %></small></span></dt>
+             <dd style="margin-left:20px"><small>
+              <% current_user.connections.each do |con| %>
+                 <span><%= link_to con.category_title, signed_feeds_path(:feed_type => "connections", :connection_id => con.id), :remote => true, :class => "common_link_font", :link_id =>"clickable",:id=>"connection" %></span><br>
+              <% end %>
+             </small></dd>
+            <% end %>
+           </dl>
+	      </div>
+	    </div>
+      </div>
+	   
+
+      <div class="" style="border: 0px">
+        <div class="">
+	        <h6> <%= image_tag("/img/leftpanel/circles.png") %> <%= t(:circle) %><%= " | " %><%= link_to "Add",communities_signed_search_index_path%></h6>
+	      </div>
+	    <div >
+	      <div >
+            <dl>
+            <% unless current_user.my_circles.count == 0 %>
+              <dt><small>Users| <%= link_to "Edit","/signed/users/manage?form_type=manage_social_circles" , :class => "common_link_font", :link_id =>"clickable" %></small></dt>
+	             <dd><small>
+               <% current_user.my_circles.each do |circle| %>
+                <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :class => "common_link_font", :remote => true, :link_id =>"clickable",:id=>"community" %></span><br>
+               <% end %>
+              <br></small></dd>
+            <% end %>
+            <% unless current_user.others_circles.count == 0 %>
+              <dt><small>Others| <%= link_to "Edit","/signed/users/manage?form_type=Others_Circle_Edit" , :class => "common_link_font", :link_id =>"clickable" %><br></small></dt>
+              <dd><small>
+               <% current_user.others_circles.each do |circle| %>
+                <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :class => "common_link_font", :remote => true, :link_id =>"clickable" ,:id=>"community"%></span><br>
+              <% end %>
+              </small></dd>
+            <% end %>
+            </dl>
+          </div>
+	    </div>
+      </div>
+
+      <div class="" style="border: 0px">
+       	<div class="">
+	        <h6><%= image_tag("/img/leftpanel/pages.png") %> Channels | <%= link_to "Add",channels_signed_search_index_path %></h6>
+	      </div>
+	    <div >
+	      <div >
+	        <dl>
+            <% unless current_user.my_chronicles.count == 0 %>
+             <dt><small>Users| <%= link_to "Edit","/signed/users/manage?form_type=manage_fan_pages" , :class => "common_link_font", :link_id =>"clickable" %></small></dt>
+             <dd><small><% current_user.my_chronicles.each do |chronicle| %>
+               <span><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %></span>
+               <span><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ), :remote => true, :class => "common_link_font", :link_id =>"clickable",:id=>"channel" %></span><br>
+             <% end %><br></small></dd>
+            <% end %>
+            <% unless current_user.other_chronicles.count == 0 %>
+             <dt><small>Other's | <%= link_to "Edit","/signed/users/manage?form_type=Others_Chronicle_Edit" , :class => "common_link_font", :link_id =>"clickable" %><br></small></dt>
+             <dd><small><% current_user.other_chronicles.each do |chronicle| %>
+               <span><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %></span>
+               <span><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ), :remote => true, :class => "common_link_font", :link_id =>"clickable",:id=>"channel" %></span><br>
+             <% end %><br></small></dd>
+            <% end %>
+            </dl>
+	       </div>
+	     </div>
+      </div>
+      
+  </div>
+</div>
+

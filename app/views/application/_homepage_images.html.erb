@@ -1,0 +1,5 @@
+<% Comment_moods.each do |key,value|%>
+  <%= link_to(image_tag("/img/homepage_splitimages/#{value}.png", {:style=>'#{100/Comment_moods.count}%'}), unsigned_search_index_path(:filter => key,:model_type => "Feed")) %>
+<% end %>
+
+

@@ -1,0 +1,38 @@
+<script>
+  $(document).ready( function(){
+    $('a[id^="question"]').tooltip('hide');
+  });
+</script>
+<div class="span8 offset2">
+  <br><br>
+  <h3>Join Now-It's free </h3>
+    <div class="well well-small">User Info-</div><br>
+    <%= simple_form_for( @user, :url => create_user_unsigned_home_index_path, :html => { :class => "form-horizontal" }) do |f| %>
+      <%= f.input :first_name, :label => 'First Name' %>
+      <%= f.input :last_name, :label => 'Last Name' %>
+      <% f.association :user_type, :collection => UserType.all, :label => 'User Type <a href="#" data-toggle="tooltip" title="Let others know search and who they are connecting." class="icon-question-sign" id="question"></a>' %>
+      <%= f.input :birthday, :as => :date, :start_year => Date.today.year - 90,
+                              :end_year => Date.today.year - 1,
+                              :order => [:month, :day , :year], :label => 'BirthDay <a href="#" data-toggle="tooltip" title="Providing your birthday helps make sure you get the right experience for your age." class="icon-question-sign" id="question"></a>',
+                            :input_html => {:class =>
+                              "date",:style => 'width: 85px'} %>
+      <% f.input :phone, :label => 'Phone Number  <a href="#" data-toggle="tooltip" title="Entering phone number will help us validate your identity" class="icon-question-sign" id="question"></a>' %>
+      <div class="well well-small">Login Info-</div><br>
+      <%= f.fields_for :login do |login|  %>
+        <%= login.input :email, :placeholder => 'user@domain.com',:label => 'Login Email <a href="#" data-toggle="tooltip" title="You will use this email to login and for all site communication." class="icon-question-sign" id="question"></a>' %>
+        <%= login.input :master_email, :placeholder => 'user@domain.com',:label => 'Master Email <a href="#" data-toggle="tooltip" title="Enter alternate email address, to recover your login email; when you forget it." class="icon-question-sign" id="question"></a>' %>
+        <%= login.input :password, :label => 'Password'  %>
+        <%= login.input :password_confirmation  %>
+      <% end %>
+      <div class="well well-small">Site Settings-</div><br>
+      <%= f.input :time_zone,:label => 'Time Zone<a href="#" data-toggle="tooltip" title="Time Zone" class="icon-question-sign" id="question"></a>'%>
+      <% @user.profile_images.build if @user.profile_images.empty? %>
+      <%= f.simple_fields_for :profile_images do |pi|  %>
+        <%= pi.input :profile_image, :as => :file, :label => 'Profile Image <a href="#" data-toggle="tooltip" title="Your profile image is your real identity for others to connect with you" class="icon-question-sign" id="question"></a>' %>
+      <% end %>
+      <div>
+        By Clicking Sign Up,You agree to our <a href="terms">Terms</a> & understand our <a href="privacy_cookies">Privacy Statement</a>
+      </div><br><br>
+    <%= f.button :submit ,"Sign Up",:class => 'btn-primary',name:"Sign Up" %>
+  <% end %>
+</div>

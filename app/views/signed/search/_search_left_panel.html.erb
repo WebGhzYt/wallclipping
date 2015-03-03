@@ -1,0 +1,54 @@
+<div  class="hero-unit" adjustTd=true>
+  <!--
+  <div>
+  <%#= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
+    <%# if   current_user.display_name.blank? %>
+      <%#= link_to current_user.first_name.capitalize + " "+ current_user.last_name.capitalize, signed_user_path(:id => current_user.id) %>
+    <%# else %>
+      <%#= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
+    <%# end %>
+  </div> --><br><br>
+
+  <% if params[:model_type] == "Circle" or params[:model_type] == "Chronicle" %>
+    <div class="well span20" style="background-color:#ebf3f8;">
+      <%= form_tag signed_search_index_path, :method => :get do %>
+            <%= params[:model_type] == "Circle" ? t(:circle) : (params[:model_type] == "Chronicle" ? "Channels" : params[:model_type] ) %> Search : <br><br>
+        <% if params[:model_type] != "Chronicle" %>
+          <%= text_field_tag :name_filter, nil, :placeholder => "#{t(:circle)} owner" %>
+          <div>or</div><br>
+        <% end %>
+        <%= text_field_tag :keyword_filter, nil, :placeholder => params[:model_type] == 'Circle' ? 'Keyword Tags' : 'Catalog owner' %>
+        <%= hidden_field_tag :model_type, params[:model_type] %>
+        <%= hidden_field_tag :keyword, params[:keyword] %>
+        <!-- hidden_field_tag :keyword, params[:keyword] -->
+        <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if params[:model_type] == "User" %> 
+    <div class="well span20" style="background-color:#ebf3f8;">
+     <%= form_tag signed_search_index_path, :method => :get do %>
+       <%= params[:model_type] == "User" ? "Domain" : "Refine" %> Search : <br><br> 
+       <%= text_field_tag :keyword, nil, :placeholder => "Search" %>
+       <%= hidden_field_tag :model_type, params[:model_type] %>
+      <!-- <%= hidden_field_tag :keyword, params[:keyword] %> -->
+       <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+     <% end %>
+    </div>
+  <% end %>
+  <% if params[:model_type] == "Feed" %>
+    <div class="well span20" style="background-color:#ebf3f8;">
+      Filter By:</br></br>
+        <% FeedType.each do |feed_type| %>
+          <%= link_to feed_type.post_type, signed_search_index_path(:feed_type => feed_type.post_type,:model_type => params[:model_type],:keyword => params[:keyword]) %><br>
+        <% end %>
+       <%# Comment_moods.each do |key, value| %>
+        <%#= link_to value,signed_search_index_path(:filter => key,:model_type => params[:model_type],:keyword => params[:keyword]) %><br>
+       <%# end %>
+       <%= link_to "Show All", signed_search_index_path(:model_type => params[:model_type],:keyword => params[:keyword]) %><br>
+      
+    </div>
+  <% end %>
+</div>
+

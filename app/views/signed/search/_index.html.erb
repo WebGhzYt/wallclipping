@@ -1,0 +1,39 @@
+<div class="hero-unit" adjustTd=true >
+  <div class="span15 offset1">
+      <span class="icon-search"></span>
+      <span><%= " Search Results " %></span>
+      <% if params[:keyword] %>
+        <span><%= "for" %></span>
+        <span style="color:red">'<%= params[:keyword] %>'</span>
+      <% end %>
+      
+     
+      <% case params[:model_type] %>
+        <% when "Feed" %>
+            <% if params[:feed_type] #params[:filter]%>
+              <%# x = params[:filter]%>
+              <span> <%= "& " %></span>
+              <span style="color:red"> '<%= params[:feed_type] %><%#=Comment_moods[x.to_i]%>' </span>
+              <span><%= "post type." %> <%#= "moods" %></span>
+            <% else %>
+              <span> <%= "& " %></span>
+              <span style="color:red"> '<%="Show All"%>' </span>
+              <span><%= "post type." %> <%#= "moods" %></span>
+            <% end %>
+             <br><br>
+            <%= render "inside_post" %>
+        <% when "User" %>
+           <br><br>
+          <% @results.each do |result| %>
+            <%= render "/unsigned/search/common_layout",:result => result, :span_length => 15 %>
+          <% end %>
+        <% when "Circle" %>
+            <br><br>
+            <%= render "inside_circle" %>
+        <% when "Chronicle" %>
+             <br><br>
+            <%= render "inside_chronicle" %>
+      <% end %>
+   <%= paginate @results unless @results.empty? %>
+  </div>
+</div>

@@ -1,0 +1,144 @@
+<script>
+  var chronicleId = '' ;
+  var circleId = '' ;
+  var connectionId = '' ;
+  var selectedUser = '' ;
+  var pageIn = '';
+  var lastFeed = "";
+  var feedCounter = 0;
+  var typeId = '';
+
+  function fetch_older_feeds() {
+
+    $.ajax({
+      url: "/signed/feeds/",
+      data: {last_feed: lastFeed, chronicle_id: chronicleId, circle_id: circleId, connection_id: connectionId, type_id: typeId, feed_type: pageIn },
+      dataType: 'script'
+    });
+  }
+
+  function setSelectedUser(userId) {
+    $("#messageUserName").html($("#userSelect-"+userId).attr('user_name'));
+    $("#message_friend_id").val($("#userSelect-"+userId).attr('user_id'));
+  }
+
+  function fetch_form(select_val) {
+    $.ajax({
+      url: "/signed/feeds/fetch_form",
+      data: {select_id: select_val, chronicle_id: chronicleId, circle_id: circleId },
+      dataType: 'script'
+    });
+   }
+
+  function MinPost() {
+     $("#minTd").show();
+     $("#formTd").hide();
+  }
+
+  function MaxPost() {
+     $("#formTd").show();
+     $("#minTd").hide();
+  }
+
+  function onComment(comment_mood_id,feed_id) {
+    if ($("#comment_empty_" + feed_id).val() != '' ) {
+    
+      commenter_id_string= ""
+      $("#select_commenter_"+ feed_id +" :selected").each(function( index ) {
+        commenter_id_string = commenter_id_string + ($( this ).val() )+ ",";
+      });
+
+      visibility = $('input[name=privacy_user_'+ feed_id +']:checked').val();
+
+     $.ajax({
+      url: "feeds/add_comment",
+      data: {
+        feed_id:feed_id, 
+        comment:$("#comment_empty_" + feed_id).val(), 
+        comment_mood_id:comment_mood_id, 
+        visibility: visibility,
+        commenter_ids : commenter_id_string
+      },
+      dataType: 'script'
+     });
+       $("#comment_error_message_" +  feed_id).hide();
+        return false;
+    }
+    else {
+       $("#myCommentMoodModal-" + feed_id ).modal('hide');     
+       $("#comment_error_message_" +  feed_id).show();
+       $("#comment_error_message_" +  feed_id).html("comment can't be blank.");
+        return false;
+    }
+}
+
+   function create_comment(feed_id) {
+    $.ajax({
+      url: "/feeds/add_comment",
+      data: {feed_id:feed_id, comment:$("#" + feed_id).val() },
+      dataType: 'script'
+    });
+   }
+
+// for comment moods 
+ var image_path_hash = new Object();
+<% Comment_moods.keys.each do |cm| %>
+ image_path_hash['<%= cm %>'] = {enabled_image:"/img/Emotions/Disabled/<%= cm %>new_heart_off.png", disabled_image:"/img/Emotions/Disabled/<%= cm %>new_heart_off.png" }
+<% end %>
+function hide_comment(comment_mood_id, post_id, comment_mood_name){
+ //This is for image mood change logic
+  $.each($("img[id^=comment_mood_image_"+post_id+"]"), function(){
+    if(comment_mood_id == "All"){
+      document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
+     }
+     else{
+        if($(this).attr('id') == "comment_mood_image_"+post_id+"-"+comment_mood_id){
+           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['enabled_image'];
+         } else{
+           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
+         }
+    }
+  });
+  // This is for hide comment logic
+  $.each($("div[comment_mood_post^=comment_mood_"+post_id +"]"),function(){
+    if(comment_mood_id == "All"){
+       $(this).show();
+       $("#comment_mood_count_"+post_id).html($("div[comment_mood_post^=comment_mood_"+post_id + "]").length/2);
+       $("#comment_mood_name_"+post_id).html("All"+" "+"comments - ");
+     }
+     else{
+        if($(this).attr('comment_mood_post') == "comment_mood_"+post_id+"-"+comment_mood_id){
+           $(this).show();
+         } else{
+           $(this).hide();
+         }
+        $("#comment_mood_count_"+post_id).html('');
+        $("#comment_mood_name_"+post_id).html(comment_mood_name);
+    }
+  });  
+}
+
+function add_icons_to_select(state) {
+  var originalOption = state.element;
+
+  if (!state.id) return state.text; // optgroup
+  return "<img class='flag' src='" + $(originalOption).data('icon') +"'/>" + " " + state.text;
+}
+
+function select2_change(){
+  $("#feed_sub_category_id").select2({
+    formatResult: add_icons_to_select,
+    formatSelection: add_icons_to_select,
+    width: 300,
+    escapeMarkup: function(m) { return m; }
+  });
+  $("#chang").select2({
+    formatResult: add_icons_to_select,
+    formatSelection: add_icons_to_select,
+    width:230,
+    escapeMarkup: function(m) { return m; }
+  });
+}
+
+
+</script>

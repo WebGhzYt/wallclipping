@@ -1,0 +1,37 @@
+<% if feed.deal_image.present? %>
+  <% begin %>
+    <% deal_image = DealImage.find_by(feed_id: feed.id) %>
+    <a href="<%=deal_image.dealimage_url(:dealimage) %>" class="group1"><%= image_tag deal_image.dealimage_url(:dealimage), :size => "360x270" %></a>
+  <% rescue %>
+    <span class="span_content">....Photo not found or removed at source..or Check URL..</span>
+  <% end %>
+<% end %>
+
+<% if feed.feed_hash["video"].present? %>
+  <% begin %>
+    <% OEmbed::Providers.register_all %>
+    <% res = OEmbed::Providers.get(feed.feed_hash["video"], {:maxwidth => 355, :maxheight => 300}) %>
+    <%= res.html.html_safe %>
+  <% rescue %>
+    <span class="span_content">Video not found or removed at source.</span>
+  <% end %>
+<% end %>
+
+
+<%= render "/signed/feeds/feed_message", :feed => feed %>
+<small style="font-size:100%;" >
+  <table>
+    <tr>
+      <td>
+        <span style="color:red;"><%= feed.feed_hash["deal_sale_price"] %>
+        </span>&nbsp;&nbsp;
+      </td>
+   <% if feed.feed_hash["deal_sale_link"].present? %>  
+      <td><span style="background-color: #0099ff;">
+        <a class="deal" href='<%= "http://"+feed.feed_hash["deal_sale_link"].gsub("http://","") %>' target='_blank'>Get it</a></span>
+      </td>
+   <% end %>
+     <td>&nbsp;&nbsp;<span style="color:black;">Expires:<%= feed.feed_hash["deal_date"] %></td>
+    </tr>
+  </table>
+</small></span>

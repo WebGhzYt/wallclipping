@@ -1,0 +1,17 @@
+<div id="connection_message">
+  <span style="font-size:19px">Invite </span>
+  <%= simple_form_for Message.new,:html => { :class => "form-horizontal" }, :url =>  createmessage_for_connections_signed_messages_path, :remote => true do |m| %>
+    <%= m.input :circle_id, :as => :select, :collection => current_user.circles{|circle| [circle.id,circle.name]}, :label => "Select Circle",:include_blank => false %>
+    <%= hidden_field_tag :partial_name, '', :value => "invite" %>
+    <%= m.input :message, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
+    <% current_user.connections.each do |c| %>
+      <label class="checkbox" style = "margin-left:180px">
+        <%= check_box_tag "connection_ids[]",c.id,false %> <%= label_tag "connection_ids[][#{c.id}]", c.category_title %>
+      </label>
+    <% end %>
+    <label class="checkbox" style = "margin-left:180px">
+        <%= check_box_tag "connection_ids[]","true",false %> <%= label_tag "connection_ids[][true]", "All" %>
+      </label>
+    <%= m.submit "Create Message",:class => 'btn-primary',:style => "margin-left:180px" %>
+  <% end %>
+</div>

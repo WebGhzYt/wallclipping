@@ -1,0 +1,13 @@
+$("#all_id_<%= params[:id] %>").replaceWith("");
+
+last_message = "<%= @allmessages.last.created_at unless @allmessages.empty? %>";
+
+$("#reply_message").html("<%= escape_javascript(render 'signed/messages/reply_message', :friend => params[:id]) %>");
+
+$("#td_reply_message").show();
+
+$('textarea').autosize();
+
+
+
+

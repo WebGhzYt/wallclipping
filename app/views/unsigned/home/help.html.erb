@@ -1,0 +1,42 @@
+    <%= stylesheet_link_tag "style", :media => "all" %>
+<header class="clearfix">
+<div class="span21 loginhdr" >
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+  </div>  
+  
+</div>
+  
+</header>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8">
+      <h3> Get help logging to your account</h3><br>
+      <div>
+        <img src="/img/logging_option.png" />
+        <%= link_to 'Forgot Password', forgot_password_unsigned_home_index_path %>
+      </div><br><br>
+      <div>
+        <img src="/img/logging_option.png" />
+        <%= link_to 'Forgot Username', forgot_username_unsigned_home_index_path %>
+      </div><br><br>
+      <div>
+        <img src="/img/logging_option.png" />
+        <%= link_to 'Account Compromised', account_compromised_unsigned_home_index_path %>
+      </div><br><br>
+      <div>
+        <img src="/img/logging_option.png" />
+        <%=link_to "Resend Verification Email",resend_email_unsigned_home_index_path%>
+      </div>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
+</div>
+
+
+
+
+

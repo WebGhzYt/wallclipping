@@ -1,0 +1,49 @@
+<% if feed.event_image.present? %>
+  <% begin %>
+     <% event_image = EventImage.find_by(feed_id: feed.id) %>
+     <a href="<%=event_image.eventimage_url(:eventimage) %>" class="group1"><%= image_tag event_image.eventimage_url(:eventimage), :size => "360x270" %></a>
+    <% rescue %>
+     <span class="span_content"> Photo not found or removed at source.</span>
+  <% end %>
+<% end %>
+
+<% if feed.feed_hash["video"].present? %>
+  <% begin %>
+    <% OEmbed::Providers.register_all %>
+    <% res = OEmbed::Providers.get(feed.feed_hash["video"], {:maxwidth => 355, :maxheight => 300}) %>
+    <%= res.html.html_safe %>
+  <% rescue %>
+    <span class="span_content">Video not found or removed at source.</span>
+  <% end %>
+<% end %>
+
+<br>
+
+   <font style="font-size:14px;"><b> <%= feed.feed_hash["event_name"].upcase unless feed.feed_hash["event_name"].nil? %></b> </font> 
+
+       <%= render "/signed/feeds/feed_message", :feed => feed %>
+
+   <small style="font-size:100%;" >
+  	 <table>
+	     <tr> 		
+	       <% if feed.feed_hash["deal_sale_link"].present? %>
+            <td><span style="background-color: #0099ff;">
+	          <a class="deal" href='<%= "http://"+feed.feed_hash["deal_sale_link"].gsub("http://","") %>' target='_blank'>Apply</a></span>
+            </td>
+         <% end %>
+	         <td>&nbsp;&nbsp;<span style="color:black;">Expires:<%= feed.feed_hash["event_date"] %>
+           </td>
+	     </tr>
+     </table>
+  </small>
+
+<br>
+
+  <a href="http://maps.google.com/?q=<%= feed.feed_hash["event_location"]%>" alt="<%= feed.feed_hash["event_location"]%>" target="_blank" > <b style="color:#014F87;"><img src="/img/location.png"></img> <%= feed.feed_hash["event_location"] %></b> </a> <br>
+  <img src="http://maps.google.com/maps/api/staticmap?center=<%= feed.feed_hash["event_location"]%>&zoom=8&size=415x200&maptype=roadmap&sensor=false&markers=<%= feed.feed_hash["event_location"]%>" alt="<%= feed.feed_hash["event_location"]%>"></img>
+
+<!--  <b style="color:#014F87;">Event:  </b>    <%#= feed.feed_hash["event_name"] %><br> -->
+<!--  <b style="color:#014F87;">Details: </b>   <%#= feed.feed %> <br> -->
+<!--  <b style="color:#014F87;">Event time:</b> <%#= feed.feed_hash["event_date"] %> -->
+    <%#= feed.feed_hash["event_time"]  %><br>
+<!--  <b style="color:#014F87;">Location: </b>  <%#= feed.feed_hash["event_location"] %><br> -->

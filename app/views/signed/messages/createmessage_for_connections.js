@@ -1,0 +1,1 @@
+$("#connection_message").replaceWith("<div class='alert alert-success'>Message Sent</div>");

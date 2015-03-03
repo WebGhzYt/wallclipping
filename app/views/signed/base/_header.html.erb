@@ -1,0 +1,238 @@
+<%= javascript_include_tag "hash_tag" %>
+<script>
+   $(document).ready(function() {
+      $('#header_popup').hide();
+   });
+
+  var emotionHash = {};
+  function get_favourites() {
+    $.ajax({
+      url: "/feeds/get_favourites",
+      dataType: 'script'
+    });
+  }
+
+  function setEmotionCounter(obj) {
+	$("span[id^='ecounter_']").html("");
+	for (var key in emotionHash) {	
+		if(emotionHash[key] > 0){
+		  $('#ecounter_' + key).html(" - " + emotionHash[key]);	
+		} 
+	}
+  }
+
+  function my(argument) {
+    $('#header_popup').toggle();
+  }
+
+
+    $(document).ready(function(){
+               
+             $( document ).on('click', '#mypost, #news, #community, #channel, #connection', function(){
+               $("#chang").select2('val', 'Show All Posts');
+             })   
+
+             $('#chang').change(function() {
+                        var selected = $("#chang option:selected").text();
+                        var ftype = $('#feed_type').val(); // $("#user_select_item").html();
+                        var circleId = $('#circle_id').val();
+                        var chronicleId = $('#chronicle_id').val();
+                        var connectionId = $('#connection_id').val();
+                        var typeId = $('#type_id').val();
+                        
+
+                           // alert(chronicleId);
+                                        $.ajax({
+                                        type: "GET",
+                                        url: "/signed/feeds",
+                                        dataType: "script",
+                                        data: { 
+                                              feed_type: ftype,
+                                              filter: selected,
+                                              model_type: "Feed",
+                                              circle_id: circleId,
+                                              chronicle_id: chronicleId, 
+                                              connection_id: connectionId,
+                                              type_id: typeId , 
+                                              }
+                                       });
+                                   
+                                   })
+
+              $('#header_popup .cat').hover(function(){
+                    category = $(this).attr('id')
+                    if (category == "cat1") {
+                               $("#cat3").css("background-color", "#f7f7f7");
+                               $("#cat2").css("background-color", "#f7f7f7");
+                               $("#c2").css("font-weight", "normal");
+                               $("#c3").css("font-weight", "normal");
+                               $("#cat1").css("background-color", "#e5e5e5");
+                               $("#c1").css("font-weight", "bold");
+                         }
+                     else if (category == "cat2") {
+                               $("#cat3").css("background-color", "#f7f7f7");
+                               $("#cat1").css("background-color", "#f7f7f7");
+                               $("#c1").css("font-weight", "normal");
+                               $("#c3").css("font-weight", "normal");
+                               $("#cat2").css("background-color", "#e5e5e5");
+                               $("#c2").css("font-weight", "bold");
+                         } 
+                     else if (category == "cat3") {
+                               $("#cat1").css("background-color", "#f7f7f7");
+                               $("#cat2").css("background-color", "#f7f7f7");
+                               $("#c2").css("font-weight", "normal");
+                               $("#c1").css("font-weight", "normal");
+                               $("#cat3").css("background-color", "#e5e5e5");
+                               $("#c3").css("font-weight", "bold");
+                        }});
+
+           
+            $('#header_popup .cat').hover(function(){
+              category = $(this).attr('id')
+              if (category == "cat1") {
+                $("#sub-cat2").hide();
+                $("#sub-cat3").hide();
+                 $("#sub-cat1").show();
+               }
+               else if (category == "cat2") {
+                $("#sub-cat1").hide();
+                $("#sub-cat3").hide();
+                $("#sub-cat2").show();
+               } 
+               else if (category == "cat3") {
+                $("#sub-cat1").hide();
+                $("#sub-cat2").hide();
+                $("#sub-cat3").show();
+               };
+            })
+
+            $("#header_popup").mouseleave(function(){
+                      $("#header_popup").hide();
+                  });
+  }) 
+
+</script>
+
+<div class="span21" style="min-height:5px;"></div>
+
+  <div class="span4" style="width:240px;">
+    <%= link_to(image_tag("/img/homepage_logo.png"), root_path) %>
+  </div>
+
+  <div class="span5">
+      <div class="btn-group">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+          <img src="/img/relayimg/nav_pin.png" />
+        </a>
+        <ul class="dropdown-menu" style="margin-top: -13px">
+          <% Emotion.all.each do |emotion| %>
+            <li class="mainitem">
+              <%=image_tag('/assets/emotion_color/'+emotion.order.to_s+'.png', :alt => "") %>
+              <%= link_to EmotionLabel.get_emotion_name(emotion.name,emotion.order,current_user.id),signed_feeds_path(:feed_type =>
+              "Favorites", :type_id => emotion.id), :style=> "margin-top: -23px;" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <%= (current_user.messages.count > 0) ? (link_to image_tag("/img/relayimg/messages_new.png"), signed_messages_path) :  (link_to image_tag("/img/relayimg/messages_not_new.png"),signed_messages_path) %>
+      </div>
+
+      <div class="btn-group">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+          <img src="/img/relayimg/settings_default.png" />
+        </a>
+        <ul class="dropdown-menu" style="margin-top: -13px">
+          <li class="mainitem"><%= link_to "Account Settings", manage_signed_users_path %></li>
+          <li class="mainitem"><%= link_to "Walls", signed_user_path(:id => current_user.id) %></li>
+          <li class="mainitem"><%= link_to "Feeds", signed_feeds_path  %></li>
+          <li class="divider"></li>
+          <li class="mainitem"><%= link_to "Log out",logout_unsigned_sessions_path  %></li>
+        </ul>
+      </div>
+    
+      <div class="btn-group">
+        <%= (current_user.new_join_requests.count > 0) ? (link_to image_tag("/img/relayimg/join_request_new.png"),join_request_signed_users_path) :  (link_to image_tag("/img/relayimg/join_request_not_new.png"),join_request_signed_users_path) %>
+      </div>
+  </div>
+
+    <div class="span1 header_dropdown">
+         <div class="btn-group">
+           <img id='category'src = "/img/dropdown.png" width="30px" height="20px" onclick="my()" ></img>
+         
+              <div id = "header_popup" class="header_popup" style="padding:0px !important;height:195px;"> 
+           
+                 <div class="span7" style="background-color:#f7f7f7;height:195px;">
+                   <ul style="margin-top:25px;">
+                    
+                    <li id="cat1" class="cat" style="width:135px!important;"><span id="c1" style="margin-left:20px;"><%= SubCategory.named_category @category_1.first.category %></span></li>
+                    <li id="cat2" class="cat" style="width:135px!important;"><span id="c2" style="margin-left:20px;" ><%= SubCategory.named_category @category_2.first.category %></span></li>
+                    <li id="cat3" class="cat" style="width:135px!important;"><span id="c3" style="margin-left:20px;"><%= SubCategory.named_category @category_3.first.category %></span></li>
+                  </ul>
+                </div>
+                
+                 <div class="span10 subcat">
+                     <ul style="margin-top:20px;margin-left:22px;">
+                        <div id="sub-cat1" style="display:block;">
+                          <% @category_1.each do |sub_category| %>
+                             <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), signed_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                          <% end %>
+                        </div>
+                        <div id="sub-cat2" style="display:none;">  
+                          <% @category_2.each do |sub_category| %>
+                             <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), signed_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                          <% end %>
+                        </div>
+                        <div id="sub-cat3" style="display:none;">  
+                          <% @category_3.each do |sub_category| %>
+                             <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), signed_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                          <% end %>
+                        </div>  
+                     </ul>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="span6">
+    <div class="btn-group">
+
+      <%= form_tag(signed_search_index_path, :method => :get)  do %>
+        <div class="hide">
+         <select name="model_type" style= "background-color:rgb(135,147,159);width:120px;border:0px;color:white" onchange="assign_type($(this).val())" >
+           <option value="Feed" style= "background-color:rgb(84,113,188);color:white">Posts</option>
+         </select>
+        </div>
+        <input type="text" name="keyword" placeholder="Search here.." style="width:260px;" onkeyup="fetch_tags($(this).val(),'signed')" id="tag_search" />
+        <input type="image" src="/img/relayimg/search_icon.png" style="margin-left:-25px;margin-top:-10px;" onsubmit="submit-form();" />
+      <% end %>
+    </div>
+    <div id="hash_tags" style = "display:none;">
+       
+    </div>
+  </div>
+
+<% if controller.controller_name == "feeds" or (controller.controller_name == "search_outresults") or (controller.controller_name == "join_requests") or (controller.controller_name == "messages") %>
+  <br><br><br>
+  <div>
+   <div class="span5" style="margin-left:-70px;">
+      <div id = "user_select_item" style="float: left; color:white; ">
+      </div>
+      <div class="span2" id="feed_image" style="float: left; margin-left:5px; display : hidden ">
+        <%= image_tag("/img/relayimg/feed.png") %>
+      </div>
+      <div class="span7" style="margin-left:0px;">
+        <%= select_tag "category_filter", grouped_options_for_select(@sub_categories) ,:id => "chang" , :prompt => 'Show All Posts' %>
+        <%= hidden_field_tag "feed_type", params[:feed_type] %>
+        <%= hidden_field_tag "circle_id", params[:circle_id] %>
+        <%= hidden_field_tag "chronicle_id", params[:chronicle_id] %>
+        <%= hidden_field_tag "connection_id", params[:connection_id] %>
+        <%= hidden_field_tag "type_id",params[:type_id] %>
+       
+      </div>
+    </div>
+  </div> 
+  <br><br>
+<% end %>
+

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- META -->
+     <title>Development and Support HTML</title>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <meta name="description" content="" />
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/style.css" media="all" /> -->
+    <%= stylesheet_link_tag "style" %> 
+    <%= stylesheet_link_tag "global" %>
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/global.css" media="all" /> -->
+     <style type="text/css">
+         body {
+           padding:0;margin:0;   
+           height:100%;width:100%;
+          }
+
+         #bgimg {
+           position:absolute;
+           z-index: -1;
+          }
+
+         .trans {
+            opacity: 0.9;
+            background-color: black;
+            padding: 1px;
+            width:809px;;
+            word-spacing: 0.2em;
+          }
+
+           .tbox {
+        background-color: black;
+        border-radius: 5px;
+        height: auto;
+        margin-bottom: 20px;
+        opacity: 0.8;
+        width: 100%;
+        height:auto;
+        max-width:455px
+        }
+
+        @media (max-width:768px){
+            div.catg{
+              width:219px!important;
+              height:120px!important;
+            }
+        }
+        @media (max-width:768px){
+            div.catg{
+              height:120px!important;
+            }
+        }
+
+     </style>
+     <!-- Javascript -->
+     <script>
+       $(document).ready( function(){
+             $('a[id^="question"]').tooltip('hide');
+             $('#header_popup').hide();
+             $('.cboxElement').colorbox();
+                  
+            var custom_height=$(window).height();
+            $('.wrapper').css('min-height',custom_height);
+                   
+            
+            $(window).resize(function(){
+              var custom_height=$(window).height();
+              $('.wrapper').css('min-height',custom_height);
+            });
+
+         
+          $('#header_popup .cat').hover(function(){
+          category = $(this).attr('id')
+          if (category == "cat1") {
+                     $("#cat3").css("background-color", "#f7f7f7");
+                     $("#cat2").css("background-color", "#f7f7f7");
+                     $("#c2").css("font-weight", "normal");
+                     $("#c3").css("font-weight", "normal");
+                     $("#cat1").css("background-color", "#e5e5e5");
+                     $("#c1").css("font-weight", "bold");
+               }
+           else if (category == "cat2") {
+                     $("#cat3").css("background-color", "#f7f7f7");
+                     $("#cat1").css("background-color", "#f7f7f7");
+                     $("#c1").css("font-weight", "normal");
+                     $("#c3").css("font-weight", "normal");
+                     $("#cat2").css("background-color", "#e5e5e5");
+                     $("#c2").css("font-weight", "bold");
+               } 
+           else if (category == "cat3") {
+                     $("#cat1").css("background-color", "#f7f7f7");
+                     $("#cat2").css("background-color", "#f7f7f7");
+                     $("#c2").css("font-weight", "normal");
+                     $("#c1").css("font-weight", "normal");
+                     $("#cat3").css("background-color", "#e5e5e5");
+                     $("#c3").css("font-weight", "bold");
+              }});
+
+          $('#header_popup .cat').hover(function(){
+            category = $(this).attr('id')
+            if (category == "cat1") {
+              $("#sub-cat2").hide();
+              $("#sub-cat3").hide();
+               $("#sub-cat1").show();
+             }
+             else if (category == "cat2") {
+              $("#sub-cat1").hide();
+              $("#sub-cat3").hide();
+              $("#sub-cat2").show();
+             } 
+             else if (category == "cat3") {
+              $("#sub-cat1").hide();
+              $("#sub-cat2").hide();
+              $("#sub-cat3").show();
+             };
+          })
+
+          $("#header_popup").mouseleave(function(){
+                        $("#header_popup").hide();
+                    });
+        });
+
+       function my(argument) {
+       $('#header_popup').toggle();
+                             };
+
+       setTimeout(function () { $("#message").fadeOut(); }, 2000);
+       var FullscreenrOptions = {  width: 789, height: 500, bgID: '#bgimg' };
+       // This will activate the full screen background!
+       jQuery.fn.fullscreenr(FullscreenrOptions);
+
+     </script>
+
+  </head>
+   <body style="background:url('<%= @more_reason_popup_image.try(:more_reason_popup_image).try(:url, :more_reason_popup_image) %>');">
+     <!-- <header class="clearfix">
+      -->
+  <div class="wrapper">
+    <div class="loginhdr custom_header custom_loginhdr">
+    <div class="header_container">
+      <div class="logo fl">
+      <%= link_to(image_tag("/img/homepage_logo.png"),root_path) %>
+      </div>
+     
+    <div class="span1 header_dropdown hrd_dropdn fl">
+      <div class="btn-group">
+          <img id='category'src = "/img/dropdown.png" width="30px" height="20px" onclick="my()" ></img>
+        <div id = "header_popup" class="header_popup" style="padding:0px !important;
+        height:195px;"> 
+       
+             <div class="span7 catg" style="background-color:#f7f7f7;height:193px;">
+               <ul style="margin-top:25px;">
+                  <h3 style="margin-left:10px;opacity:0.4;">Explore Recommendations</h3>
+                  <li id="cat1" class="cat"><span id="c1" style="margin-left:20px;"><%= SubCategory.named_category @category_1.first.category %></span></li>
+                  <li id="cat2" class="cat"><span id="c2" style="margin-left:20px;"><%= SubCategory.named_category @category_2.first.category %></span></li>
+                  <li id="cat3" class="cat"><span id="c3" style="margin-left:20px;"><%= SubCategory.named_category @category_3.first.category %></span></li>
+               </ul>
+             </div>
+            
+             <div class="span9 subcat">
+                 <ul style="margin-top:20px;margin-left:22px;">
+                    <div id="sub-cat1" style="display:block;">
+                      <% @category_1.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>
+                    <div id="sub-cat2" style="display:none;">  
+                      <% @category_2.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>
+                    <div id="sub-cat3" style="display:none;">  
+                      <% @category_3.each do |sub_category| %>
+                         <li><%= link_to (image_tag(sub_category.icon, alt: "") + " " + sub_category.name), unsigned_search_index_path(:keyword => sub_category.name, :model_type => "Feed") %></li>
+                      <% end %>
+                    </div>  
+                 </ul>
+             </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="span9 custom_search_panel">
+       <br>
+    
+       <%= form_tag unsigned_search_index_path, :method => :get do %>
+      <div class="input-append">
+         <select style="width:120px;" name="model_type" onchange="assign_type($(this).val())">
+          <option value="Feed" >Posts</option>
+          <option value="User">Connections</option>
+         </select>
+         <input class="span7" name="keyword" type="text" style="width:254px;" placeholder="Search public posts or profiles..." onkeyup="fetch_tags($(this).val())" id="tag_search" />
+        <span class="add-on" style="height:30px;"><input type="image" src="/img/relayimg/search_icon.png" /></span>
+      </div>
+      <span style="padding-top: 30px;">
+       <div id="hash_tags" style = "display:none;">
+       </div>
+      </span>
+       <% end %> 
+
+      </div>
+
+       <div class="custom_login_panel fr">
+      <font color="white">Already Member? </font> 
+      <%= link_to 'Log In', unsigned_home_index_path, :class => "btn btn-primary " %>
+       </div>
+       <div class="clear"></div>
+    </div>
+    </div>
+  
+  <!-- </header> -->
+
+  <div class="content">
+    <div class="grid loginblogkpg">
+      <!--<div class="row">
+        <div class="col_12"><h1 class="title">Get close-up eith SOCIAL</h1></div>
+      </div>-->
+      <div class="row">
+        <div class="col_7 loginfst_block">
+        <div class="home-user">
+          <div class="row">
+          <!-- <span><img src="/img/home_banner.png"></span> -->
+          <span><img src="<%= @home_banner_image.try(:home_banner_image).try(:url, :home_banner_image) %>"></span>
+          </div>
+
+        </div>
+        </div>
+      <div class="col_5 loginsnd_block righthome">
+        
+        <div class="tbox">
+        <div style="margin-left:15px;">
+          
+      <%= simple_form_for( @user, :url => create_user_unsigned_home_index_path, :html => { :class => "form-horizontal" }) do |f| %>
+         
+         <br>
+        <h2 class="sub-title" style="color:white;">Sign Up</h2>
+        <form id="register">
+        <div class="register-form">
+        <div class="form-item row">
+        <div class="form-field mar">
+        <%= f.input :first_name, :placeholder => 'First Name' %>
+        <%= @user.errors[:email].join(' ,') %>
+        <div class="form-field">
+        <%= f.input :last_name, :placeholder => 'Last Name'  %>
+        </div>
+        </div>
+        <div class="form-item row">
+        <label></label>
+        <div class="birth-field row" style="color:white;">
+         <%= f.input :birthday, :as => :date, :start_year => Date.today.year - 90, :end_year => Date.today.year - 1, :order => [:month, :day , :year], :label => 'BirthDay <a href="#" data-toggle="tooltip" title="Providing your birthday helps make sure you get the right experience for your age." class="icon-question-sign" id="question"></a>', :input_html => {:class => "date"} %>
+        </div>
+        </div>
+
+        <%= f.fields_for :login do |login|  %>
+          <div class="form-item row">
+           <%= login.input :email, :placeholder => 'Login Email',:label => 'Login Email <a href="#" data-toggle="tooltip" title="You will use this email to login and for all site communication." class="icon-question-sign" id="question"></a>' %>
+          </div>
+          <div class="form-item row">
+           <%= login.input :password, :label => 'Password', :placeholder => 'Password'   %>
+          </div>
+        <% end %>
+        <div class="form-item row">
+          <%#= f.input :time_zone,:label => 'Time Zone<a href="#" data-toggle="tooltip" title="Time Zone" class="icon-question-sign" id="question"></a>'%>
+         </div>
+         <div class="privacy" style="color:white;">
+          By clicking Join button, you agree to our <a href="/unsigned/home/terms">Terms</a> & read our <a href="/unsigned/home/privacy_cookies">Privacy Statement</a>.
+         </div>
+         <div class="form-action row">
+          <%= f.button :submit ,"Join us!", :class => 'btn-success',name:"Sign Up" %> <span style="color:white;">or</span> 
+          <%= link_to(image_tag("fb_join.png"), "/auth/facebook/") %><br/>
+         </div>
+        </form>
+        </div></div></div>
+        <% end%>
+
+        
+      </div>
+
+      </div> <!-- End Grid -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="custom_footer">
+      <div id="copyright">
+        <p class="trans">&copy; 2015 Wallclipping&nbsp;</p>
+        <div class="footer_nav">
+          <ul>
+          <li><a href="/unsigned/home/about_us">About us</a><span>|</span></li>
+          <li><a href="/unsigned/home/terms">Terms</a><span>|</span></li>
+          <li><a href="/unsigned/home/privacy_cookies">Privacy & Cookies</a><span>|</span></li>
+          <li> <a href="/unsigned/home/help_center">Help Center</a><span>|</span></li>
+          <li><a href="/unsigned/home/whats_new">Whats New</a><span>|</span></li>
+          <li><a href="/unsigned/home/feed_back">Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+   </footer>
+ </div>
+</body>
+</html>

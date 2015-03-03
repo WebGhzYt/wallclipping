@@ -1,0 +1,16 @@
+
+body.active_admin #header {
+	height: 70px !important;
+}
+
+body.active_admin #header ul#tabs {
+	margin-left: 70px !important;
+}
+
+body.active_admin #header #utility_nav {
+    margin-top: -35px;
+}
+
+body.active_admin #header ul#tabs > li a {
+    padding: 0px 10px 0px !important;
+}

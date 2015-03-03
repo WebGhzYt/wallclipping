@@ -1,0 +1,71 @@
+<%= javascript_include_tag "jquery.colorbox-min" , "common_layout" %>
+<%= render "shared/replace_content_script" %>
+<script>
+$(document).ready(function(){
+    photoOverlay();
+    replace_content();
+    $('#header_popup').hide();
+});
+
+  function my(argument) {
+    $('#header_popup').toggle();
+  }
+
+</script>
+
+<div class="span20">
+  <% if params[:model_type] == "User" %>
+  <div class="well span5" style="background-color:#ebf3f8;">
+   <%= form_tag unsigned_search_index_path, :method => :get do %>
+     Domain Search : <br><br>
+     <%= text_field_tag :keyword, nil, :placeholder => "Search" %>
+       <%= hidden_field_tag :model_type, params[:model_type] %>
+      <!-- <%= hidden_field_tag :keyword, params[:keyword] %> -->
+       <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+   <% end %>
+  </div>
+  <% end %>
+  <% if params[:model_type] == "Feed" %>
+    <div class="well span5" style="background-color:#ebf3f8;">
+      Filter By:</br>
+      <% FeedType.each do |feed_type| %>
+        <% searchpath = current_user ? signed_search_index_path(:feed_type => feed_type.post_type,:model_type => params[:model_type],:keyword => params[:keyword]) : unsigned_search_index_path(:feed_type => feed_type.post_type,:model_type => params[:model_type],:keyword => params[:keyword]) %>
+        <%= link_to feed_type.post_type, searchpath %><br>
+      <% end %>
+      <% allpath = current_user ? signed_search_index_path(:model_type => params[:model_type],:keyword => params[:keyword]) : unsigned_search_index_path(:model_type => params[:model_type],:keyword => params[:keyword]) %>
+      <%= link_to "Show All", allpath %>
+      <%# Comment_moods.each do |key, value| %>
+        <%# searchpath = current_user ? signed_search_index_path(:filter => key,:model_type => params[:model_type],:keyword => params[:keyword]) : unsigned_search_index_path(:filter => key,:model_type => params[:model_type],:keyword => params[:keyword])%>
+        <%#= link_to value, searchpath %><br>
+      <%# end %>
+      <%# allpath = current_user ? signed_search_index_path(:model_type => params[:model_type],:keyword => params[:keyword]) : unsigned_search_index_path(:model_type => params[:model_type],:keyword => params[:keyword]) %>
+      <%#= link_to "Show All", allpath %><br>
+    </div>
+  <% end %>
+  <div class="span15 offset1">
+      <span class="icon-search"></span>
+      <span><%= " Search Results " %></span>
+      <% if params[:keyword] %>
+        <span><%= "for" %></span>
+        <span style="color:red">'<%= params[:keyword] %>'</span>
+      <% end %>
+        <% case params[:model_type] %>
+         <% when "Feed" %>
+            <% if params[:feed_type] #params[:filter]%>
+              <%# x = params[:filter]%>
+              <span> <%= "& " %></span>
+              <span style="color:red"> '<%= params[:feed_type] %><%#=Comment_moods[x.to_i]%>' </span>
+              <span><%= "post type." %> <%#= "moods" %></span>
+            <% else %>
+              <span> <%= "& " %></span>
+              <span style="color:red"> '<%="Show All"%>' </span>
+              <span><%= "post type." %> <%#= "moods" %></span>
+            <% end %>
+             <br><br>
+            <%= render "outside_post" %>
+         <% when "User" %>
+            <%= render "users" %>
+        <% end %>
+   <%= paginate @results unless @results.empty? %>
+  </div>
+</div>

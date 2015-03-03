@@ -1,0 +1,43 @@
+<div id="remove_<%= feed.id %>_<%= comment.id %>">
+  <div class="row-fluid" comment_mood_post="comment_mood_<%= feed.id %>-<%= comment.rating %>">
+    <span class="span2">
+     <%= link_to(image_tag(comment.user.profile_image_thumb), signed_user_path(:id => comment.user.id)) %>
+    </span>
+    <span class="span15">
+     <% if comment.user.display_name.blank? %>
+       <%= link_to comment.user.first_name.capitalize + " "+ comment.user.last_name.capitalize , signed_user_path(:id => comment.user.id) %>
+     <% else %>
+       <%= link_to comment.user.display_name.capitalize , signed_user_path(:id => comment.user.id) %>
+     <% end %><br>
+     <% if comment.created_at.to_date == Date.today %>
+       <%= comment.created_at.in_time_zone(comment.user.time_zone).strftime("%l:%M%p").to_s %>
+     <% elsif comment.created_at.to_date == Date.today-1 %>
+       <%= comment.created_at.in_time_zone(comment.user.time_zone).strftime("Yesterday %l:%M%p").to_s %>
+     <% else %>
+       <%= comment.created_at.in_time_zone(comment.user.time_zone).to_date.strftime("%b %d, %Y").to_s %>
+     <% end %>
+    </span>
+    <span class="span3">
+    
+      <% if (current_user == comment.user) %>
+        <ul class="cssMenu">
+         <li><a style="float:right"><img src="/img/relayimg/report_abuse.png"/></a>
+           <ul>
+             <li style="font-size:13px;font-style:italic;">
+               <%= link_to "Delete", deletecomment_signed_feeds_path(:feed_id => feed.id,:comment_id => comment.id),:remote => true %>
+             </li>
+           </ul>
+         </li>
+        </ul> 
+        <% end %>
+      <%= image_tag "/img/Emotions/Disabled/#{comment.rating}new_heart_off.png", :title => Comment_moods[comment.rating][5..20] unless comment.rating.nil? %>
+      <span>
+        
+      </span>
+    </span>
+  </div>
+  <div class="row-fluid" style="word-wrap:break-word;" comment_mood_post="comment_mood_<%= feed.id %>-<%= comment.rating %>">
+     <%= comment.comment %>
+     <hr/>
+  </div>
+</div>

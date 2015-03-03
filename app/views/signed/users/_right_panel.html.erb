@@ -1,0 +1,35 @@
+<div id="pjax-container" class="hero-unit" adjustTd=true>
+ <%= case params[:form_type]
+   when "general"
+     render "signed/users/manage_forms/general"
+   when "status"
+     render "signed/users/manage_forms/status"
+   when "fave_it"
+     render "signed/users/manage_forms/fave_it"  
+   when "create_about_me"
+     render "signed/users/settings_walls/edit_wall_profile"
+   when "sort_about_me_list"
+     render "signed/users/settings_walls/sort_about_me_list"
+   when "add_profile_photos"
+     render "signed/users/settings_walls/profile_photos"
+   when "create_list_names"
+     render "signed/users/connections/manage_connections"
+   when "lists_update"
+     render "signed/users/connections/lists_update"
+   when "manage_social_circles"
+     render "signed/users/circles/manage_circles"
+   when "circle_info"
+     render "signed/users/circles/circle_info"
+   when "invite"
+     render "signed/users/circles/invite"
+   when "Others_Circle_Edit"
+     render "shared/unfollow_other_circles"
+   when "manage_fan_pages"
+     render "signed/users/chronicles/manage_chronicles"
+   when "Others_Chronicle_Edit"
+     render "shared/unfollow_other_chronicles"
+   else
+     render "signed/users/manage_forms/general"
+   end
+ %>
+</div>

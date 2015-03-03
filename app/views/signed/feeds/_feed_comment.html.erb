@@ -1,0 +1,27 @@
+<div class="row-fluid">
+      <div class="span3">
+        <%= image_tag current_user.profile_image_thumb %>
+      </div>
+      <div class="span13">
+        <textarea rows="1" cols="1" placeholder="Comment here..."  id="comment_empty_<%= feed.id %>" style = "resize: none;font-size:12px;width:200px;" ></textarea>
+        <div class="span_content" id="comment_error_message_<%= feed.id %>" style="display:none; color:red;"> </div>
+      </div>
+      <div class="span3">
+        <button style="background-color:rgb(135,147,159);color:white;-webkit-border-radius:5px; font-size: 12px;" type="button" , data-toggle = "modal", data-target = "#myCommentMoodModal-<%= feed.id %>">+</button>
+      </div>
+
+      <div class="span20" id="privacy_user_div">
+        <%= "Respond: " %>
+        <%= radio_button_tag("privacy_user_#{feed.id}", '1', 'true') %> Openly
+        <%#= radio_button_tag("privacy_user_#{feed.id}", '0') %> <!-- Publisher -->
+        <span id="commenter_from">
+          <%= radio_button_tag("privacy_user_#{feed.id}", '2') %> Discreetly 
+        </span>
+        <div class="commenter_drop_down hide row">
+          <div class="offset3" style="margin-top:13px;">
+            <%= select_tag "commenter", options_for_select(feed.comment_users(current_user.id).map { |f| [f.first_name+" "+f.last_name, f.id, { 'data-img-src' => f.profile_image_thumb} ] }), :id => "select_commenter_#{feed.id}", :multiple => "multiple", :class => "select_commenter_class span12" %>
+          </div>
+        </div>
+      </div>
+
+  </div>

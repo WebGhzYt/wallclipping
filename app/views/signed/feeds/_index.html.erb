@@ -1,0 +1,32 @@
+<script>
+  $(document).ready(function(){
+  var emotionId = '';
+  var emotId = "";
+   chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
+   circleId = "<%= @circle ? @circle.id : '' %>";
+   connectionId = "<%= @connection ? @connection.id : '' %>";
+   feedCounter = 0;
+   pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
+   lastFeed = '<%= @last_feed %>';
+   <% if @status.nil? || @status %>
+     MinPost();
+     fetch_form($('#post_type_id_post_type').data('value'))
+   <% end %>
+
+   typeId = '<%= params[:type_id] %>';
+   setTimeout(function(){fetch_older_feeds()},3000);
+  });
+</script>
+
+ <td id="minTd" style="min-width: 50px; display : none;"><%= render "max_post" %></td>
+ <td id="formTd" style="display : none; min-width: 420px;"><%= render "feed_type" %></td>
+ <td id="new_td" style="display : none;"></td>
+ <%= render "all_feeds", :feeds => @feeds %>
+ <td id="old_td" style="display : none;"></td>
+
+<script>
+$(document).ready(function(){
+    photoOverlay();
+    $('textarea').autosize();
+});
+</script>

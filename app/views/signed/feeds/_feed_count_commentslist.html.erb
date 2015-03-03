@@ -1,0 +1,28 @@
+<% if feed.comments.count > 0 %>
+ <div class="hero-unit span_content" style="background-color:rgb(231,235,242);" >
+   <div class="row-fluid" id="comments_count_<%= feed.id %>"><%= render "comments_count", :feed => feed %></div>
+   <div id="new_comment_<%= feed.id %>"></div>
+   <% feed.comments.reverse.each do |comment| %>
+   		<% if comment.user_id == current_user.id %>
+   			<%= render "comment", :comment => comment, :feed => feed %>
+   		<% elsif comment.visibility == 1 %>
+   			<%= render "comment", :comment => comment, :feed => feed %>
+   	<!-- 	<%# elsif comment.visibility == 0 %>
+   			<%# if feed.user_id == current_user.id %>
+   				<%#= render "comment", :comment => comment, :feed => feed %>
+   			<%# end %> -->
+   		<% elsif comment.visibility == 2 %>
+   			<% if feed.user_id == current_user.id %>
+   				<%= render "comment", :comment => comment, :feed => feed %>
+		   	<% else %>
+		   		<% visible_to_users = comment.comment_privacies.map(&:user_id) %>
+		   		<% if visible_to_users.include?(current_user.id) %>
+		    		<%= render "comment", :comment => comment, :feed => feed %>
+		   		<% end %>
+   			<% end %>
+	   	<% end %>
+   	<% end %>
+ </div>
+<% else %>
+ <div  id="feed_comments_none_<%= feed.id %>"></div>
+<% end %>

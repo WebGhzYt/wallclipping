@@ -1,0 +1,7 @@
+$("#friends_listing").show();
+
+$("#all_friends").replaceWith("<div id='all_friends'><%= escape_javascript(render 'all_friends_list', :friends =>  @connections_list ) %></div>");
+
+$("#td_latest_unread_messages").hide();
+
+$("#td_reply_message").hide();

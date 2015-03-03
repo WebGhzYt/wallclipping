@@ -1,0 +1,23 @@
+<div class="well well-small" style="max-width:800px;">
+   <h6>New Circle Owner</h6>
+</div>
+
+<%= link_to(image_tag(@circle.user.profile_image_thumb), signed_user_path(:id => @circle.user_id) ) %>
+<% user_name = @circle.user.display_name.blank? ? @circle.user.first_name.capitalize + " " + @circle.user.last_name.capitalize : @circle.user.display_name.capitalize %>
+<%= link_to user_name, signed_user_path(:id => @circle.user_id), :class => "common_link_font" %><br><br>
+
+<div class="well well-small" style="max-width:800px;">
+  <h6>New Circle Activity</h6>
+</div>
+
+<span class="span_content">
+  Total Posts-0
+</span><br><br>
+
+<div class="well well-small" style="max-width:800px;">
+  <h6>About New Circle</h6>
+</div>
+
+<span class="span_content">
+  <%= @circle.short_description %>
+</span>

@@ -1,0 +1,28 @@
+<script>
+  var lastuser = "<%= @chronicles.empty? ? "" : @chronicles.last.published_date %>";
+  var type = "<%= params[:type] %>";
+  var userId = "<%= @user.id %>";
+  var chronicleId = "<%= @chronicles.empty? ? "" : @chronicles.last.id %>";
+  var page = 1;
+  function fetch_older_chronicles() {
+    $.ajax({
+      url: "/signed/users/fetch_older_chronicles",
+      data: {last_chronicle: lastuser, user_id: userId, type: type, repeate: "repeate", chronicle_id: chronicleId, page: page  },
+      dataType: 'script'
+    });
+  }
+</script>
+
+<% unless params[:repeate] == "repeate" %>
+ <% if params[:type] == "user" %>
+<div class="well well-small" style="max-width:800px;"><h6>User Channels</h6></div>
+ <% else %>
+<div class="well well-small" style="max-width:800px;"><h6>Other Channels</h6></div>
+ <% end %>
+<% end %>
+<% (@chronicles.empty? ? [] : @chronicles).each do |chronicle| %>
+  <%= render "chronicle_div_content", :chronicle => chronicle %>
+<% end %>
+
+<div id="last_chronicle_content">
+</div>

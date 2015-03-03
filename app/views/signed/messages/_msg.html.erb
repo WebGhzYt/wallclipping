@@ -1,0 +1,35 @@
+<td id="remove_<%= msg.id %>">
+ <div class="row-fluid">
+  <div class="span3">
+    <%= image_tag msg.user.profile_image_thumb %>
+  </div>
+  <div class="span12">
+    <div class="span_content">
+     <% if msg.user.display_name.blank? %>
+       <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize,signed_user_path(:id => msg.user.id) %>
+     <% else %>
+       <%= link_to msg.user.display_name.capitalize , signed_user_path(:id => msg.user.id) %>
+     <% end %>
+    </div>
+    <div class="span_content">
+      <%= msg.message %><br><br>
+      <%= link_to msg.circle.name,get_circle_details_signed_users_path(:id => msg.circle_id) if msg.circle_id %>
+      <span class="pull-right">
+        <% if (current_user == msg.user) %>
+        <%= link_to "Delete",deletemessage_signed_messages_path(:message_id => msg.id),:remote => true %>
+        <% end %>
+      </span>
+    </div>
+    <div class="span_content">
+      <% if msg.created_at.to_date == Date.today %>
+        <%= msg.created_at.strftime("%l:%M%p").to_s %>
+      <% elsif msg.created_at.to_date == Date.today-1 %>
+        <%= msg.created_at.strftime("Yesterday %l:%M%p").to_s %>
+      <% else %>
+        <%= msg.created_at.to_date.strftime("%b %d, %Y").to_s %>
+      <% end %>
+      <hr style="width:200px;">
+    </div>
+  </div>
+ </div>
+</td>

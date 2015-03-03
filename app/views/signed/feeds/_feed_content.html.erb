@@ -1,0 +1,42 @@
+<% unless feed.feed_type.nil? %>
+  <div class="feeds" style="min-width:290px;">
+      <% if feed.feed_type.post_type == "Video" %>
+       <%= render "/signed/feeds/content/videos_feed", :feed => feed %>
+      <% elsif feed.feed_type.post_type == "File" %>
+       <%= render "/signed/feeds/content/photos_feed", :feed => feed %>
+      <% elsif feed.feed_type.post_type == "Event" %>
+       <%= render "/signed/feeds/content/events_feed", :feed => feed %>
+      <% elsif feed.feed_type.post_type == "Deal" %>
+       <%= render "/signed/feeds/content/deals_feed", :feed => feed %>
+      <% else %>
+      <% end %>
+  </div>
+  <br>
+  <% if feed.feed_type.post_type == "Status" %>
+    <%= render "/signed/feeds/feed_message", :feed => feed %>
+  <% end %>
+<% end %>
+ <% unless feed.add_link.blank? and feed.tags.blank? %>
+  <a href="#" id = "link_<%= feed.id %>" onclick="$('#display_content_<%= feed.id %>').show(); $(this).hide();">Read more</a>
+ <% end %>
+  <div id = "display_content_<%= feed.id %>" style="display:none;">
+   <% unless feed.add_link.blank? %>
+     <div class="span_content">
+       Go To : <a href="<%= "http://"+feed.add_link.gsub("http://","") %>" target="_blank"><%= feed.add_link %></a>
+     </div>
+   <% end %>
+   <% unless feed.tags.blank? %>
+    <div class="span_content">
+      Tag Users : 
+      <% cnt = 0 %>
+      <% feed.tags.each do |user_id| %>
+        <% user = User.where(:id => user_id).first %>
+        <% display_name = user.display_name.blank? ? user.first_name.capitalize + " "+ user.last_name.capitalize : user.display_name.capitalize %>
+        <%= cnt > 0 ? ", " : " " %><%= link_to display_name, signed_user_path(user) %>
+        <% cnt += 1 %>  
+      <% end %>  
+     </div> 
+   <% end %>
+  </div>
+
+

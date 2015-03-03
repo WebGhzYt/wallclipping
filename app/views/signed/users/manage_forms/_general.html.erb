@@ -1,0 +1,35 @@
+<script>
+  $(document).ready(function(){
+    $(".pass_fields").hide();
+    $("#change_pass").click(function(){
+      $(".pass_fields").slideToggle(300);
+      $("#change_pass").attr("disabled","disabled");
+    });
+
+  });
+</script>
+<%= render "shared/flash_messages"%>
+<h3> General Profile Settings </h3>
+  <% user = @user.nil? ? current_user : @user %>
+  <%= simple_form_for [:signed, user], :html => {:class => 'form-horizontal'}, :remote => true  do |user| %>
+     <%= hidden_field_tag :partial_name, '', :value => "general" %>
+    <%# if current_user.account_setting.present? %>
+      <% if current_user.account_setting.user_type.present? and current_user.account_setting.user_type == 'Non-personal'%>
+          <%= user.input :display_name, :label => 'Display Name' %>
+      <% end %>
+    <%# end %>
+      <%#= user.association :user_type, :collection => UserType.all , :label => 'User Type'  %>
+       <%= user.fields_for :login do |login|  %>
+     <div class="pass_a">
+        <label>Password:</label>
+        <a href="#" id="change_pass"> change password </a>
+     </div>
+     <div class="pass_fields">
+       <%= login.input :password, :label => 'Password'  %>
+       <%= login.input :password_confirmation  %>
+     </div>
+   <% end %>
+     <%= user.input :time_zone,:label => 'Time Zone' %>
+     <%= user.submit "Update",:class => 'btn-primary' %>
+  <% end %>
+

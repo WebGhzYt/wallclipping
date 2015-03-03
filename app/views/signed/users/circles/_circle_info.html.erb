@@ -1,0 +1,55 @@
+<script>
+  var current_id = '';
+  var circle_id = "<%= @circle.id if @circle %>";
+  function delete_row(tr_id, circle_id){
+   $.ajax({
+      url: "/signed/users/delete_circle",
+      data: { edit_id : current_id, id : tr_id, circle_id : circle_id, partial_name : "circle_info" },
+      dataType: 'script'
+    });
+   $("#"+tr_id).hide();
+  }
+
+$(document).ready(function() {
+
+   change_chevon(circle_id);
+
+});
+</script>
+
+
+<% if params[:sub_form] == "sort_about" %>
+   <% tab_name = "sort_about" %>
+   <% partial = "signed/users/circles/sort_about" %>
+<% elsif params[:sub_form] == "add_photos" %>
+   <% tab_name = "add_photos" %>
+   <% partial = "signed/users/circles/circle_photos" %>
+<% elsif params[:sub_form] == "members" %>
+   <% tab_name = "members" %>
+   <% partial = "signed/users/circles/members" %>
+<% else params[:sub_form] == "about" %>
+  <% tab_name = "about" %>
+  <% partial = "signed/users/circles/circle_form" %>  
+  <% partial1 = "signed/users/circles/circle_edit_information" %>
+<% end %>
+
+<h4><%= @circle.name %></h4>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="<%= (tab_name == 'about') ? 'active' : '' %>"><%= link_to "About", circle_edits_path(:id => @circle.id, :form_type => 'circle_info',:controller => "signed/users", :action => "about", :sub_form => 'about'), :pjax_way => "true", :onclick => "change_chevon('#{@circle.id}');" %></li>
+         <li class="<%= (tab_name == 'sort_about') ? 'active' : '' %>"><%= link_to "Sort About", circle_edit_path(:id => @circle.id, :form_type => 'circle_info',:controller => "signed/users", :action => "sort_about", :sub_form => 'sort_about'), :pjax_way => "true", :onclick => "change_chevon('#{@circle.id}');" %></li>
+         <li class="<%= (tab_name == 'add_photos') ? 'active' : '' %>"><%= link_to "Circle Wall Photos", circle_edit_path(:id => @circle.id, :form_type => 'circle_info',:controller => "signed/users", :action => "add_circle_photos", :sub_form => 'add_photos'), :pjax_way => "true", :onclick => "change_chevon('#{@circle.id}');" %></li>
+         <li class="<%= (tab_name == 'members') ? 'active' : '' %>"><%= link_to "Members", circle_edit_path(:id => @circle.id, :form_type => 'circle_info',:controller => "signed/users", :action => "get_members", :sub_form => 'members'), :pjax_way => "true", :onclick => "change_chevon('#{@circle.id}');" %></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+         <div id="all_content">
+          <%= render partial %>
+          <div id="second_container">
+            <%= render partial1 if tab_name == 'about' %>
+          </div>
+         </div>
+        </div>
+      </div>
+    </div>
+ 

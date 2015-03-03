@@ -1,0 +1,70 @@
+<script>
+  $(function(){
+    var photo_id = $("#feed_photo_id").val()
+    var e_photo_id = $("#event_photo_id").val()
+    var d_photo_id = $("#deal_photo_id").val()
+
+
+    if (photo_id != 'undefined' && photo_id == ''){
+      document.getElementById("myButton1").disabled=true;
+    }else if(e_photo_id != 'undefined' && e_photo_id == ''){
+      document.getElementById("myButton1").disabled=true;
+    }else if(d_photo_id != 'undefined' && d_photo_id == ''){
+      document.getElementById("myButton1").disabled=true;
+    }
+  })
+  function change(){
+    
+//    document.getElementById("myButton1").disabled=true;
+//    setTimeout(function(){
+//   location = '/'
+//    },5000)
+  }
+</script>
+<div class="row-fluid"> 
+ <div class="span15"> 
+   <div class="row-fluid">  
+      <% if @circle.nil? and @chronicle.nil? %>
+      <div class="span15">
+        <div class="span13">
+         <img  src="/img/coolpinshare/share.png" /> 
+         <span style= "color:#014F87;font-style:italic;font-size:13px;">Share publicly</span>
+        </div>
+        <div class="span2">
+         <%#= f.input :public, :as => :boolean, label:false, :input_html => { :value => '0' } %>
+         <%= f.check_box :public %>
+        </div>
+      </div><br><br>
+      <div class="span20">
+         <img  src="/img/leftpanel/target_friends.png" />
+         <a href="#myModal" data-toggle="modal" style = "color:#014F87;font-weight:500;font-size:13px;"> Target connections </a><%= render "choose_connections" %>
+      </div>
+      <% end %>
+   </div>
+ </div><br><br><br>
+   <div class="span8">
+     <% if current_user.suspend_till.blank? || ( current_user.suspend_till < Time.now ) %>
+        <input name="commit" id="myButton1" type="submit" value="Post" style="background-color:rgb(135,147,159);color:white;-webkit-border-radius:5px;" onClick="change();">
+     <% else %>        
+        <button style="background-color:rgb(135,147,159);color:white;-webkit-border-radius:5px;" type="button">Post</button>
+        <h6 style="color:red">The account is suspended for one week for not complying with site terms</h6>
+     <% end %>   
+   </div>
+</div>
+
+<% channel_id = @circle.nil? ? nil : @circle.id.to_s %>
+<% channel_id = channel_id || (@chronicle.nil? ? nil : @chronicle.id.to_s) %>
+<% channel_id = channel_id || (@connection.nil? ? nil : @connection.id.to_s) %>
+
+<% posted_in = @circle.nil? ? nil : "circle" %>
+<% posted_in = posted_in || (@chronicle.nil? ? nil : "chronicle") %>
+
+<% if !channel_id.nil? %>
+
+ <input type="hidden" name="feed[channels][]" value='<%=  channel_id %>'>
+<% end %>
+
+<% if !posted_in.nil? %>
+
+ <input type="hidden" name="feed[feed_hash][posted_in]" value='<%=  posted_in %>'>
+<% end %>
